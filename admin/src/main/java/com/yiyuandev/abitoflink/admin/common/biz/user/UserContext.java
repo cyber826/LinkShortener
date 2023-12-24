@@ -40,3 +40,18 @@ public final class UserContext {
 
     /**
      * get real name from context
+     *
+     * @return realName
+     */
+    public static String getRealName() {
+        UserInfoDTO userInfoDTO = USER_THREAD_LOCAL.get();
+        return Optional.ofNullable(userInfoDTO).map(UserInfoDTO::getRealName).orElse(null);
+    }
+
+    /**
+     * Remove user context
+     */
+    public static void removeUser() {
+        USER_THREAD_LOCAL.remove();
+    }
+}
