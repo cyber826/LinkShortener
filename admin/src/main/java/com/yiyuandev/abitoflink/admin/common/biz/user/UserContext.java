@@ -19,4 +19,24 @@ public final class UserContext {
     }
 
     /**
-     * get user id 
+     * get user id from context
+     *
+     * @return userId
+     */
+    public static String getUserId() {
+        UserInfoDTO userInfoDTO = USER_THREAD_LOCAL.get();
+        return Optional.ofNullable(userInfoDTO).map(UserInfoDTO::getUserId).orElse(null);
+    }
+
+    /**
+     * get username from context
+     *
+     * @return username
+     */
+    public static String getUsername() {
+        UserInfoDTO userInfoDTO = USER_THREAD_LOCAL.get();
+        return Optional.ofNullable(userInfoDTO).map(UserInfoDTO::getUsername).orElse(null);
+    }
+
+    /**
+     * get real name from context
