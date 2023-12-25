@@ -7,4 +7,19 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-imp
+import lombok.SneakyThrows;
+
+/**
+ * UserTransmitFilter
+ */
+@RequiredArgsConstructor
+public class UserTransmitFilter implements Filter {
+
+    @SneakyThrows
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) {
+        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+        String username = httpServletRequest.getHeader("username");
+        if (StrUtil.isNotBlank(username)) {
+            String userId = httpServletRequest.getHeader("userId");
+            String realName = h
