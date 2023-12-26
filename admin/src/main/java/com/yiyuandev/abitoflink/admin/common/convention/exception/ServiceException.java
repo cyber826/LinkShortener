@@ -1,1 +1,21 @@
-package com.yiyuandev.abitoflink.admin.common.convention.exc
+package com.yiyuandev.abitoflink.admin.common.convention.exception;
+
+import com.yiyuandev.abitoflink.admin.common.convention.errorcode.BaseErrorEnum;
+import com.yiyuandev.abitoflink.admin.common.convention.errorcode.IErrorCode;
+
+import java.util.Optional;
+
+public class ServiceException extends AbstractException {
+
+    public ServiceException(String message) {
+        this(message, null, BaseErrorEnum.SERVICE_ERROR);
+    }
+
+    public ServiceException(IErrorCode errorCode) {
+        this(null, errorCode);
+    }
+
+    public ServiceException(String message, IErrorCode errorCode) {
+        this(message, null, errorCode);
+    }
+
