@@ -28,4 +28,19 @@ public final class Results {
                 .setData(data);
     }
 
-   
+    /**
+     * Construct failure response
+     */
+    public static Result<Void> failure() {
+        return new Result<Void>()
+                .setCode(BaseErrorEnum.SERVICE_ERROR.code())
+                .setMessage(BaseErrorEnum.SERVICE_ERROR.message());
+    }
+
+    /**
+     * Construct failure response through {@link AbstractException}
+     */
+    public static Result<Void> failure(AbstractException abstractException) {
+        String errorCode = Optional.ofNullable(abstractException.getErrorCode())
+                .orElse(BaseErrorEnum.SERVICE_ERROR.code());
+  
