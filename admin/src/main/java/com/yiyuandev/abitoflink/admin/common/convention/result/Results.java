@@ -43,4 +43,19 @@ public final class Results {
     public static Result<Void> failure(AbstractException abstractException) {
         String errorCode = Optional.ofNullable(abstractException.getErrorCode())
                 .orElse(BaseErrorEnum.SERVICE_ERROR.code());
-  
+        String errorMessage = Optional.ofNullable(abstractException.getErrorMessage())
+                .orElse(BaseErrorEnum.SERVICE_ERROR.message());
+        return new Result<Void>()
+                .setCode(errorCode)
+                .setMessage(errorMessage);
+    }
+
+    /**
+     * Construct failure response through errorCode、errorMessage
+     */
+    public static Result<Void> failure(String errorCode, String errorMessage) {
+        return new Result<Void>()
+                .setCode(errorCode)
+                .setMessage(errorMessage);
+    }
+}
