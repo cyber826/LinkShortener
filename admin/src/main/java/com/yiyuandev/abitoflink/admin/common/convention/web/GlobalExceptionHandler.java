@@ -29,4 +29,11 @@ public class GlobalExceptionHandler {
      */
     @SneakyThrows
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    
+    public Result<Void> validExceptionHandler(HttpServletRequest request, MethodArgumentNotValidException ex) {
+        BindingResult bindingResult = ex.getBindingResult();
+        FieldError firstFieldError = CollectionUtil.getFirst(bindingResult.getFieldErrors());
+        String exceptionStr = Optional.ofNullable(firstFieldError)
+                .map(FieldError::getDefaultMessage)
+                .orElse(StrUtil.EMPTY);
+        log.error("[{}] {} [ex] {}", request.getMethod(), getUrl(request), exceptionStr);
+        return Results.failure(BaseErrorEnum.CLIENT_ERROR.code(), exce
