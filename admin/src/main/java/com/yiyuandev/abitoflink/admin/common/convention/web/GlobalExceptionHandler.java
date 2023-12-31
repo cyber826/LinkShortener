@@ -36,4 +36,16 @@ public class GlobalExceptionHandler {
                 .map(FieldError::getDefaultMessage)
                 .orElse(StrUtil.EMPTY);
         log.error("[{}] {} [ex] {}", request.getMethod(), getUrl(request), exceptionStr);
-        return Results.failure(BaseErrorEnum.CLIENT_ERROR.code(), exce
+        return Results.failure(BaseErrorEnum.CLIENT_ERROR.code(), exceptionStr);
+    }
+
+    /**
+     * Interception of application internal exceptions
+     */
+    @ExceptionHandler(value = {AbstractException.class})
+    public Result abstractException(HttpServletRequest request, AbstractException ex) {
+        if (ex.getCause() != null) {
+            log.error("[{}] {} [ex] {}", request.getMethod(), request.getRequestURL().toString(), ex.toString(), ex.getCause());
+            return Results.failure(ex);
+        }
+        log.error("[{}] {} [ex] {}", request.getMethod(), request.getRequestURL().toString(), ex.toString(
