@@ -65,4 +65,6 @@ public class GlobalExceptionHandler {
         if (StringUtils.isEmpty(request.getQueryString())) {
             return request.getRequestURL().toString();
         }
-        ret
+        return request.getRequestURL().toString() + "?" + request.getQueryString();
+    }
+}
