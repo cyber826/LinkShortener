@@ -48,4 +48,21 @@ public class GlobalExceptionHandler {
             log.error("[{}] {} [ex] {}", request.getMethod(), request.getRequestURL().toString(), ex.toString(), ex.getCause());
             return Results.failure(ex);
         }
-        log.error("[{}] {} [ex] {}", request.getMethod(), request.getRequestURL().toString(), ex.toString(
+        log.error("[{}] {} [ex] {}", request.getMethod(), request.getRequestURL().toString(), ex.toString());
+        return Results.failure(ex);
+    }
+
+    /**
+     * Interception of uncaught exceptions
+     */
+    @ExceptionHandler(value = Throwable.class)
+    public Result defaultErrorHandler(HttpServletRequest request, Throwable throwable) {
+        log.error("[{}] {} ", request.getMethod(), getUrl(request), throwable);
+        return Results.failure();
+    }
+
+    private String getUrl(HttpServletRequest request) {
+        if (StringUtils.isEmpty(request.getQueryString())) {
+            return request.getRequestURL().toString();
+        }
+        ret
