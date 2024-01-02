@@ -16,4 +16,6 @@ public class BaseDO {
      * 0: not deleted
      * 1: deleted
      */
-    @TableField(fill = FieldFill.I
+    @TableField(fill = FieldFill.INSERT)
+    private Integer delFlag;
+}
