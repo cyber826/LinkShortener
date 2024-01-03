@@ -13,4 +13,8 @@ public class UserConfiguration {
         FilterRegistrationBean<UserTransmitFilter> registration = new FilterRegistrationBean<>();
         registration.setFilter(new UserTransmitFilter());
         registration.addUrlPatterns("/*");
-        registrat
+        registration.setOrder(0);
+        return registration;
+    }
+}
+
