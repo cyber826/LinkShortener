@@ -27,3 +27,20 @@ public class GroupController {
         return Results.success();
     }
 
+    /**
+     * Get list of groups created by current user
+     */
+    @GetMapping("/api/abitoflink/admin/v1/group")
+    public Result<List<LinkGroupRespDTO>> listGroup() {
+        return Results.success(groupService.listGroup());
+    }
+
+    /**
+     * Update group name
+     *
+     * @param requestParam LinkGroupUpdateReqDTO
+     */
+    @PutMapping("/api/abitoflink/admin/v1/group")
+    public Result<Void> updateGroup(@RequestBody LinkGroupUpdateReqDTO requestParam) {
+        groupService.updateGroup(requestParam);
+        return Results.success();
