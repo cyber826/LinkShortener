@@ -11,4 +11,14 @@ import java.util.Date;
 @Component(value = "myMetaObjectHandlerByAdmin")
 public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
-    publ
+    public void insertFill(MetaObject metaObject) {
+        this.strictInsertFill(metaObject, "creationTime", Date::new, Date.class);
+        this.strictInsertFill(metaObject, "updateTime", Date::new, Date.class);
+        this.strictInsertFill(metaObject, "delFlag", () -> 0, Integer.class);
+    }
+
+    @Override
+    public void updateFill(MetaObject metaObject) {
+        this.strictInsertFill(metaObject, "updateTime", Date::new, Date.class);
+    }
+}
