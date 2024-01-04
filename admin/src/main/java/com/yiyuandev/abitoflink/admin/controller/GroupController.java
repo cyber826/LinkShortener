@@ -44,3 +44,23 @@ public class GroupController {
     public Result<Void> updateGroup(@RequestBody LinkGroupUpdateReqDTO requestParam) {
         groupService.updateGroup(requestParam);
         return Results.success();
+    }
+
+    /**
+     * Delete group
+     *
+     * @param gid the group's gid to be deleted
+     */
+    @DeleteMapping("/api/abitoflink/admin/v1/group")
+    public Result<Void> deleteGroup(@RequestParam("gid") String gid) {
+        groupService.deleteGroup(gid);
+        return Results.success();
+    }
+
+    @PostMapping("/api/abitoflink/admin/v1/group/sort")
+    public Result<Void> sortGroup(@RequestBody List<LinkGroupSortReqDTO> requestParam) {
+        groupService.sortGroup(requestParam);
+        return Results.success();
+    }
+
+}
