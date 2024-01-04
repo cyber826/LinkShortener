@@ -38,3 +38,27 @@ public class RecycleBinController {
      * recycle bin item pagination
      */
     @GetMapping("/api/abitoflink/admin/v1/recycle-bin/page")
+    public Result<Page<ShortLinkPageRespDTO>> pageRecycleBinShortLink(ShortLinkRecycleBinPageReqDTO requestParam) {
+        return recycleBinService.pageRecycleBinShortLink(requestParam);
+    }
+
+    /**
+     * recover short link from recycle bin
+     *
+     * @param requestParam RecycleBinRecoverReqDTO
+     */
+    @PostMapping("/api/abitoflink/admin/v1/recycle-bin/recover")
+    public Result<Void> recoverRecycleBin(@RequestBody RecycleBinRecoverReqDTO requestParam) {
+        shortLinkRemoteService.recoverRecycleBin(requestParam);
+        return Results.success();
+    }
+
+    /**
+     * remove short link
+     */
+    @PostMapping("/api/abitoflink/admin/v1/recycle-bin/remove")
+    public Result<Void> removeRecycleBin(@RequestBody RecycleBinRemoveReqDTO requestParam) {
+        shortLinkRemoteService.removeRecycleBin(requestParam);
+        return Results.success();
+    }
+}
