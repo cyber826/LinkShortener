@@ -46,4 +46,17 @@ public class ShortLinkController {
     @SneakyThrows
     @PostMapping("/api/abitoflink/admin/v1/create/batch")
     public void batchCreateShortLink(@RequestBody ShortLinkBatchCreateReqDTO requestParam, HttpServletResponse response) {
-        Result<ShortLinkBatchCreateRespDTO> shortLinkBatchCreateRespDTOResult = shortLinkRemoteService.batchCreateShortLink(requestPar
+        Result<ShortLinkBatchCreateRespDTO> shortLinkBatchCreateRespDTOResult = shortLinkRemoteService.batchCreateShortLink(requestParam);
+        if (shortLinkBatchCreateRespDTOResult.isSuccess()) {
+            List<ShortLinkBaseInfoRespDTO> baseLinkInfos = shortLinkBatchCreateRespDTOResult.getData().getBaseLinkInfos();
+            EasyExcelWebUtil.write(response, "batch-links-by-abitoflink", ShortLinkBaseInfoRespDTO.class, baseLinkInfos);
+        }
+    }
+
+    /**
+     * update short link
+     *
+     * @param requestParam ShortLinkUpdateReqDTO
+     */
+    @PostMapping("/api/abitoflink/admin/v1/update")
+    public Result<Void> updateShortLink(@RequestBody ShortLinkUpdateReqDTO requestParam
