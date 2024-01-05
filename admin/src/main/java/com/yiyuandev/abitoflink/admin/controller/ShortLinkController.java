@@ -35,4 +35,15 @@ public class ShortLinkController {
     /**
      * create short link
      */
-    @PostMapping("/api/
+    @PostMapping("/api/abitoflink/admin/v1/create")
+    public Result<ShortLinkCreateRespDTO> createShortLink(@RequestBody ShortLinkCreateReqDTO requestParam) {
+        return shortLinkRemoteService.createShortLink(requestParam);
+    }
+
+    /**
+     * batch create short links
+     */
+    @SneakyThrows
+    @PostMapping("/api/abitoflink/admin/v1/create/batch")
+    public void batchCreateShortLink(@RequestBody ShortLinkBatchCreateReqDTO requestParam, HttpServletResponse response) {
+        Result<ShortLinkBatchCreateRespDTO> shortLinkBatchCreateRespDTOResult = shortLinkRemoteService.batchCreateShortLink(requestPar
