@@ -59,4 +59,17 @@ public class ShortLinkController {
      * @param requestParam ShortLinkUpdateReqDTO
      */
     @PostMapping("/api/abitoflink/admin/v1/update")
-    public Result<Void> updateShortLink(@RequestBody ShortLinkUpdateReqDTO requestParam
+    public Result<Void> updateShortLink(@RequestBody ShortLinkUpdateReqDTO requestParam) {
+        shortLinkRemoteService.updateShortLink(requestParam);
+        return Results.success();
+    }
+
+    /**
+     * short link pagination
+     */
+    @GetMapping("/api/abitoflink/admin/v1/page")
+    public Result<Page<ShortLinkPageRespDTO>> pageShortLink(ShortLinkPageReqDTO requestParam) {
+        return shortLinkRemoteService.pageShortLink(requestParam);
+    }
+
+}
