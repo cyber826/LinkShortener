@@ -24,4 +24,20 @@ public class ShortLinkStatsController {
      */
     @GetMapping("/api/abitoflink/admin/v1/stats")
     public Result<ShortLinkStatsRespDTO> shortLinkStats(ShortLinkStatsReqDTO requestParam) {
-        return shortLink
+        return shortLinkRemoteService.oneShortLinkStats(requestParam);
+    }
+
+    /**
+     * get short links stats within the same group
+     */
+    @GetMapping("/api/abitoflink/admin/v1/stats/group")
+    public Result<ShortLinkStatsRespDTO> groupShortLinkStats(ShortLinkGroupStatsReqDTO requestParam) {
+        return shortLinkRemoteService.groupShortLinkStats(requestParam);
+    }
+
+
+    /**
+     * access data for short links in a specific time range (pagination)
+     */
+    @GetMapping("/api/abitoflink/admin/v1/stats/access-record")
+    public Result<Page<ShortLinkStatsAccessRecord
