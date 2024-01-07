@@ -49,4 +49,6 @@ public class ShortLinkStatsController {
      */
     @GetMapping("/api/abitoflink/admin/v1/stats/access-record/group")
     public Result<Page<ShortLinkStatsAccessRecordRespDTO>> groupShortLinkStatsAccessRecord(ShortLinkGroupStatsAccessRecordReqDTO requestParam) {
-        return shortLinkRemoteService.groupShortLinkStatsAccessRecord(requestParam
+        return shortLinkRemoteService.groupShortLinkStatsAccessRecord(requestParam);
+    }
+}
