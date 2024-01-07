@@ -14,4 +14,9 @@ import lombok.EqualsAndHashCode;
 public class UserDO extends BaseDO {
     private Long id;
     private String username;
-    private String pas
+    private String password;
+    private String realName;
+    private String phone;
+    private String email;
+    private Long deletionTime;
+}
