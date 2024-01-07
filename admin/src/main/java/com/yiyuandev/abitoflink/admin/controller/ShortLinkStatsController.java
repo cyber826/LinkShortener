@@ -40,4 +40,13 @@ public class ShortLinkStatsController {
      * access data for short links in a specific time range (pagination)
      */
     @GetMapping("/api/abitoflink/admin/v1/stats/access-record")
-    public Result<Page<ShortLinkStatsAccessRecord
+    public Result<Page<ShortLinkStatsAccessRecordRespDTO>> shortLinkStatsAccessRecord(ShortLinkStatsAccessRecordReqDTO requestParam) {
+        return shortLinkRemoteService.shortLinkStatsAccessRecord(requestParam);
+    }
+
+    /**
+     * access data for short links in the same group in a specific time range (pagination)
+     */
+    @GetMapping("/api/abitoflink/admin/v1/stats/access-record/group")
+    public Result<Page<ShortLinkStatsAccessRecordRespDTO>> groupShortLinkStatsAccessRecord(ShortLinkGroupStatsAccessRecordReqDTO requestParam) {
+        return shortLinkRemoteService.groupShortLinkStatsAccessRecord(requestParam
