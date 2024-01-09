@@ -7,4 +7,9 @@ import lombok.Data;
  */
 @Data
 public class UserUpdateReqDTO {
-    private S
+    private String username;
+    private String password;
+    private String realName;
+    private String phone;
+    private String email;
+}
