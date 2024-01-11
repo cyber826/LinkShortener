@@ -1,20 +1,18 @@
+
 package com.yiyuandev.abitoflink.admin.remote.dto.req;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ShortLinkPageReqDTO extends Page {
+public class ShortLinkRecycleBinPageReqDTO extends Page {
 
     /**
-     * group id
+     * group ids
      */
-    private String gid;
-
-    /**
-     * order tag
-     */
-    private String orderTag;
+    private List<String> gidList;
 }
