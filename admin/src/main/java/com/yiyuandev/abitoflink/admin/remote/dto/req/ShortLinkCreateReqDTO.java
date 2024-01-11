@@ -1,23 +1,22 @@
+
 package com.yiyuandev.abitoflink.admin.remote.dto.req;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
-public class ShortLinkBatchCreateReqDTO {
+public class ShortLinkCreateReqDTO {
+    /**
+     * domain
+     */
+    private String domain;
 
     /**
-     * origin urls
+     * original url
      */
-    private List<String> originUrls;
-
-    /**
-     * batch descriptions
-     */
-    private List<String> descriptions;
+    private String originUrl;
 
     /**
      * group id
@@ -25,18 +24,23 @@ public class ShortLinkBatchCreateReqDTO {
     private String gid;
 
     /**
-     * created type 0：api 1：console
+     * by api: 0， by console: 1
      */
-    private Integer createdType;
+    private int createdType;
 
     /**
-     * valid date type 0：permanent 1：custom
+     * permanent: 0， custom: 1
      */
-    private Integer validDateType;
+    private int validDateType;
 
     /**
-     * valid date
+     * valid_date
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+11")
     private Date validDate;
+
+    /**
+     * description
+     */
+    private String description;
 }
