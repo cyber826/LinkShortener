@@ -47,3 +47,16 @@ public class ShortLinkStatsAccessRecordRespDTO {
     /**
      * suburb
      */
+    private String locale;
+
+    /**
+     * user
+     */
+    private String user;
+
+    /**
+     * creation time
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+11")
+    private Date creationTime;
+}
