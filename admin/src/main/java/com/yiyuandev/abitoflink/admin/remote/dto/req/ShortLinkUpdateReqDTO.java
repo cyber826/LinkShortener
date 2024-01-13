@@ -36,4 +36,11 @@ public class ShortLinkUpdateReqDTO {
     /**
      * valid_date
      */
-    @JsonFormat(pattern = "yyyy-MM-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+11")
+    private Date validDate;
+
+    /**
+     * description
+     */
+    private String description;
+}
