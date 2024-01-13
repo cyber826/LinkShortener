@@ -4,4 +4,46 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ShortLinkStatsAccessRecordRespDTO {
+
+    /**
+     * user type
+     */
+    private String uvType;
+
+    /**
+     * browser type
+     */
+    private String browser;
+
+    /**
+     * operating system
+     */
+    private String os;
+
+    /**
+     * ip
+     */
+    private String ip;
+
+    /**
+     * device
+     */
+    private String device;
+
+    /**
+     * network
+     */
+    private String network;
+
+    /**
+     * suburb
+     */
