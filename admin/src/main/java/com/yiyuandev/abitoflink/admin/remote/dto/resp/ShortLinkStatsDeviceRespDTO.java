@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShortLinkStatsBrowserRespDTO {
+public class ShortLinkStatsDeviceRespDTO {
 
     /**
      * count
@@ -17,9 +17,9 @@ public class ShortLinkStatsBrowserRespDTO {
     private Integer cnt;
 
     /**
-     * browser type
+     * device type
      */
-    private String browser;
+    private String device;
 
     private Double ratio;
 }
