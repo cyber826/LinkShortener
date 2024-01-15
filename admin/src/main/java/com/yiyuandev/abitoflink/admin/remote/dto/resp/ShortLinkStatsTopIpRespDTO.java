@@ -9,17 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShortLinkStatsOsRespDTO {
+public class ShortLinkStatsTopIpRespDTO {
 
-    /**
-     * count
-     */
-    private Integer cnt;
-
-    /**
-     * operating system
-     */
-    private String os;
-
-    private Double ratio;
-}
+  
