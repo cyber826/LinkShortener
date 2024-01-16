@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShortLinkStatsTopIpRespDTO {
+public class ShortLinkStatsUvRespDTO {
 
     /**
      * count
@@ -17,7 +17,9 @@ public class ShortLinkStatsTopIpRespDTO {
     private Integer cnt;
 
     /**
-     * IP
+     * unique visitor type
      */
-    private String ip;
+    private String uvType;
+
+    private Double ratio;
 }
