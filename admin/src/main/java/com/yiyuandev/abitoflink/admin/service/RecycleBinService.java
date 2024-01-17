@@ -12,4 +12,5 @@ public interface RecycleBinService {
      * @param requestParam ShortLinkRecycleBinPageReqDTO
      * @return IPage<ShortLinkPageRespDTO>
      */
-    Result<Page<ShortLinkPageRespDTO>> pageRecycleBinShortLink(Sh
+    Result<Page<ShortLinkPageRespDTO>> pageRecycleBinShortLink(ShortLinkRecycleBinPageReqDTO requestParam);
+}
