@@ -12,4 +12,21 @@ import com.yiyuandev.abitoflink.admin.dao.mapper.GroupMapper;
 import com.yiyuandev.abitoflink.admin.remote.ShortLinkRemoteService;
 import com.yiyuandev.abitoflink.admin.remote.dto.req.ShortLinkRecycleBinPageReqDTO;
 import com.yiyuandev.abitoflink.admin.remote.dto.resp.ShortLinkPageRespDTO;
-import com.yiyuandev.abitoflink.admin.service.RecycleBinServ
+import com.yiyuandev.abitoflink.admin.service.RecycleBinService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service(value = "recycleBinServiceImplByAdmin")
+
+@RequiredArgsConstructor
+public class RecycleBinServiceImpl implements RecycleBinService {
+
+    private final GroupMapper groupMapper;
+
+    private final ShortLinkRemoteService shortLinkRemoteService;
+
+    @Override
+    public Result<Page<ShortLinkPageRespDTO>> pageRecycleBinShortLink(ShortLinkRecycleBinPageReqDTO requestParam) {
+        LambdaQueryWrapper<GroupDO> queryWrapper = Wrappers.lambdaQuery(GroupDO.class
