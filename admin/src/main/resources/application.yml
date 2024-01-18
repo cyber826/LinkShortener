@@ -9,4 +9,23 @@ spring:
   #    driver-class-name: com.mysql.cj.jdbc.Driver
   #    hikari:
   #      connection-test-query: select 1
-  #      connection-timeout: 
+  #      connection-timeout: 20000
+  #      idle-timeout: 300000
+  #      maximum-pool-size: 5
+  #      minimum-idle: 5
+  datasource:
+    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+    url: jdbc:shardingsphere:classpath:shardingsphere-config-${database.env:dev}.yaml
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: short-link-admin
+short-link:
+  group:
+    max-num: 20

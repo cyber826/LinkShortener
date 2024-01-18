@@ -1,0 +1,4 @@
+# Data source collection
+dataSources:
+  ds_0:
+    dataSourceClassName: com.zaxxer.hikari.HikariDa
