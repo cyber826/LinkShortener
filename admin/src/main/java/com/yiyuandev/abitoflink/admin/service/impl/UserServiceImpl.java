@@ -129,3 +129,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
             value: JSON String of user info
          */
         stringRedisTemplate.opsForHash().put(USER_LOGIN_KEY + requestParam.getUsername(), uuid, JSON.toJSONString(userDO));
+        stringRedisTemplate.expire(USER_LOGIN_KEY + requestParam.getUsername(), 30L, TimeUnit.MINUTES);
+
+        return new UserLoginRespDTO(uuid);
+    }
+
+    @Override
+    public Boolean isLogin(String token, String username) {
+        return stringRedisTemplate.opsForHash().hasKey(USER_LOGIN_KEY + username, token);
+    }
+
+    @Override
+    public void logout(String token, String username) {
+        if (isLogin(token, username)) {
+            stringRedisTemplate.delete(USER_LOGIN_KEY + username);
+            return;
+        }
+        throw new ClientException(USER_LOGOUT_ERROR);
+    }
+}
