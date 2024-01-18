@@ -12,4 +12,12 @@ public final class RandomGenerator {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
         for (int i = 0; i < length; i++) {
-            sb.append(CHARACTERS.charAt(r
+            sb.append(CHARACTERS.charAt(random.nextInt(CHARACTERS.length())));
+        }
+        return sb.toString();
+    }
+
+    public static String getCharacters() {
+        return generateRandomString(6);
+    }
+}
