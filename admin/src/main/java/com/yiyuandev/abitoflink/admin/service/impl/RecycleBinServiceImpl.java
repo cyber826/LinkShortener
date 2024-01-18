@@ -29,4 +29,14 @@ public class RecycleBinServiceImpl implements RecycleBinService {
 
     @Override
     public Result<Page<ShortLinkPageRespDTO>> pageRecycleBinShortLink(ShortLinkRecycleBinPageReqDTO requestParam) {
-        LambdaQueryWrapper<GroupDO> queryWrapper = Wrappers.lambdaQuery(GroupDO.class
+        LambdaQueryWrapper<GroupDO> queryWrapper = Wrappers.lambdaQuery(GroupDO.class)
+                .eq(GroupDO::getUsername, UserContext.getUsername())
+                .eq(GroupDO::getDelFlag, 0);
+        List<GroupDO> groupDOList = groupMapper.selectList(queryWrapper);
+        if (CollUtil.isEmpty(groupDOList)) {
+            throw new ServiceException("No group info of the user");
+        }
+        requestParam.setGidList(groupDOList.stream().map(GroupDO::getGid).toList());
+        return shortLinkRemoteService.pageRecycleBinShortLink(requestParam);
+    }
+}
