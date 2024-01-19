@@ -44,4 +44,20 @@ rules:
       # Data table sharding algorithm
       group_table_hash_mod:
         # Shard by hash of sharding key
-        type: HA
+        type: HASH_MOD
+        # Number of shards
+        props:
+          sharding-count: 16
+  - !ENCRYPT
+    # The tables that need encryption
+    tables:
+      # User table
+      t_user:
+        # The fields in the user table that need encryption
+        columns:
+          # Phone number field, logical field, may not actually exist in the database
+          phone:
+            # The encrypted text field that stores the phone number in the database
+            cipherColumn: phone
+            # Encryption algorithm for ID number
+        
