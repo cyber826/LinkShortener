@@ -11,3 +11,13 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
         "com.yiyuandev.abitoflink.project",
 })
 @MapperScan(value = {
+        "com.yiyuandev.abitoflink.admin.dao.mapper",
+        "com.yiyuandev.abitoflink.project.dao.mapper",
+})
+public class AggregationServiceApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(AggregationServiceApplication.class, args);
+    }
+
+}
