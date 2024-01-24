@@ -35,4 +35,27 @@ rules:
             shardingAlgorithmName: link_goto_table_hash_mod
       t_link_stats_today:
         actualDataNodes: ds_0.t_link_stats_today_${0..15}
-        tab
+        tableStrategy:
+          standard:
+            shardingColumn: gid
+            shardingAlgorithmName: link_stats_today_hash_mod
+    bindingTables:
+      - t_link, t_link_stats_today
+    shardingAlgorithms:
+      user_table_hash_mod:
+        type: HASH_MOD
+        props:
+          sharding-count: 16
+      group_table_hash_mod:
+        type: HASH_MOD
+        props:
+          sharding-count: 16
+      link_table_hash_mod:
+        type: HASH_MOD
+        props:
+          sharding-count: 16
+      link_goto_table_hash_mod:
+        type: HASH_MOD
+        props:
+          sharding-count: 16
+      link_stats_to
