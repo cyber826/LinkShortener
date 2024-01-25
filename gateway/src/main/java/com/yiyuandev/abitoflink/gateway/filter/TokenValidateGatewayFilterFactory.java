@@ -14,4 +14,25 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-import reactor.core.p
+import reactor.core.publisher.Mono;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * SpringCloud gateway token filter
+ */
+@Component
+public class TokenValidateGatewayFilterFactory extends AbstractGatewayFilterFactory<Config> {
+
+    private final StringRedisTemplate stringRedisTemplate;
+
+    public TokenValidateGatewayFilterFactory(StringRedisTemplate stringRedisTemplate) {
+        super(Config.class);
+        this.stringRedisTemplate = stringRedisTemplate;
+    }
+
+    @Override
+    public 
