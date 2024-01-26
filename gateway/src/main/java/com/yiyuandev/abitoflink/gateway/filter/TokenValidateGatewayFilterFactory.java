@@ -35,4 +35,13 @@ public class TokenValidateGatewayFilterFactory extends AbstractGatewayFilterFact
     }
 
     @Override
-    public 
+    public GatewayFilter apply(Config config) {
+        return (exchange, chain) -> {
+            ServerHttpRequest request = exchange.getRequest();
+            String requestPath = request.getPath().toString();
+            String requestMethod = request.getMethod().name();
+            if (!isPathInWhiteList(requestPath, requestMethod, config.getWhitePathList())) {
+                String username = request.getHeaders().getFirst("username");
+                String token = request.getHeaders().getFirst("token");
+                Object userInfo;
+                if (Str
