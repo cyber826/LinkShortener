@@ -49,4 +49,13 @@ public class TokenValidateGatewayFilterFactory extends AbstractGatewayFilterFact
                     ServerHttpRequest.Builder builder = exchange.getRequest().mutate().headers(httpHeaders -> {
                         httpHeaders.set("userId", userInfoJsonObject.getString("id"));
                         httpHeaders.set("realName", URLEncoder.encode(userInfoJsonObject.getString("realName"), StandardCharsets.UTF_8));
-                    })
+                    });
+                    return chain.filter(exchange.mutate().request(builder.build()).build());
+                }
+                ServerHttpResponse response = exchange.getResponse();
+                response.setStatusCode(HttpStatus.UNAUTHORIZED);
+                return response.writeWith(Mono.fromSupplier(() -> {
+                    DataBufferFactory bufferFactory = response.bufferFactory();
+                    GatewayErrorResult resultMessage = GatewayErrorResult.builder()
+                            .status(HttpStatus.UNAUTHORIZED.value())
+ 
