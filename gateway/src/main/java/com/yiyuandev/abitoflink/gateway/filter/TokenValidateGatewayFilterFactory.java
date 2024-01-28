@@ -58,4 +58,14 @@ public class TokenValidateGatewayFilterFactory extends AbstractGatewayFilterFact
                     DataBufferFactory bufferFactory = response.bufferFactory();
                     GatewayErrorResult resultMessage = GatewayErrorResult.builder()
                             .status(HttpStatus.UNAUTHORIZED.value())
- 
+                            .message("Token validation error")
+                            .build();
+                    return bufferFactory.wrap(JSON.toJSONString(resultMessage).getBytes());
+                }));
+            }
+            return chain.filter(exchange);
+        };
+    }
+
+    private boolean isPathInWhiteList(String requestPath, String requestMethod, List<String> whitePathList) {
+        return (!CollectionUtils.isEmpty(whitePathList) && whitePathList.stream().anyMatch(requestPath::startsWith)) || (Objects.equals(requestPa
