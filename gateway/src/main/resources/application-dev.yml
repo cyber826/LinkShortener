@@ -1,9 +1,10 @@
+
 spring:
   cloud:
     gateway:
       routes:
-        - id: short-link-admin-aggregation
-          uri: lb://short-link-aggregation/api/abitoflink/admin/**
+        - id: short-link-admin
+          uri: lb://short-link-admin/api/abitoflink/admin/**
           predicates:
             - Path=/api/abitoflink/admin/**
           filters:
@@ -13,8 +14,8 @@ spring:
                   - /api/abitoflink/admin/v1/user/login
                   - /api/abitoflink/admin/v1/user/is-username-available
 
-        - id: short-link-project-aggregation
-          uri: lb://short-link-aggregation/api/abitoflink/**
+        - id: short-link-project
+          uri: lb://short-link-project/api/abitoflink/**
           predicates:
             - Path=/api/abitoflink/**
           filters:
