@@ -16,3 +16,26 @@ public class RedisKeyConstant {
      * short link is null - prefix key
      */
     public static final String GOTO_IS_NULL_SHORT_LINK_KEY = "short-link:is-null:goto_%s";
+
+    /**
+     * update gid - prefix key
+     */
+    public static final String LOCK_GID_UPDATE_KEY = "short-link:lock:update-gid:%s";
+
+    /**
+     * short link stats delay queue - prefix key
+     */
+    public static final String DELAY_QUEUE_STATS_KEY = "short-link:delay-queue:stats";
+
+    /**
+     * check unique visitor - prefix key
+     */
+    public static final String SHORT_LINK_STATS_UV_KEY = "short-link:stats:uv:";
+
+    /**
+     * check unique ip - cache prefix key
+     */
+    public static final String SHORT_LINK_STATS_UIP_KEY = "short-link:stats:uip:";
+
+    /**
+     * stats message queue(redis s
