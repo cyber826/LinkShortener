@@ -21,4 +21,12 @@ public enum UserErrorEnum implements IErrorCode {
     }
 
     @Override
-    publi
+    public String code() {
+        return code;
+    }
+
+    @Override
+    public String message() {
+        return message;
+    }
+}
