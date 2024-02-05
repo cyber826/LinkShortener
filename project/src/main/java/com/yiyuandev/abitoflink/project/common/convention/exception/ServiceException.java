@@ -19,4 +19,15 @@ public class ServiceException extends AbstractException {
         this(message, null, errorCode);
     }
 
-    public ServiceException(String message, Throwable throwable, IEr
+    public ServiceException(String message, Throwable throwable, IErrorCode errorCode) {
+        super(Optional.ofNullable(message).orElse(errorCode.message()), throwable, errorCode);
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceException{" +
+                "code='" + errorCode + "'," +
+                "message='" + errorMessage + "'" +
+                '}';
+    }
+}
