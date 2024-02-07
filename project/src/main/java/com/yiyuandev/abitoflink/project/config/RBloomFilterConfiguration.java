@@ -9,4 +9,12 @@ import org.springframework.context.annotation.Configuration;
  * Bloom filter configuration
  */
 @Configuration
-pu
+public class RBloomFilterConfiguration {
+
+    @Bean
+    public RBloomFilter<String> shortUriCreateCachePenetrationBloomFilter(RedissonClient redissonClient) {
+        RBloomFilter<String> cachePenetrationBloomFilter = redissonClient.getBloomFilter("shortUriCreateCachePenetrationBloomFilter");
+        cachePenetrationBloomFilter.tryInit(10000000L, 0.001);
+        return cachePenetrationBloomFilter;
+    }
+}
