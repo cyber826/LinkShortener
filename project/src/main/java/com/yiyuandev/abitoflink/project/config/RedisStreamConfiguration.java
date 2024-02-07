@@ -12,4 +12,18 @@ import org.springframework.data.redis.connection.stream.StreamOffset;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
 
 import java.time.Duration;
-import java.util.concurrent.ExecutorServi
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static com.yiyuandev.abitoflink.project.common.constant.RedisKeyConstant.SHORT_LINK_STATS_STREAM_GROUP_KEY;
+import static com.yiyuandev.abitoflink.project.common.constant.RedisKeyConstant.SHORT_LINK_STATS_STREAM_TOPIC_KEY;
+
+@Configuration
+@RequiredArgsConstructor
+public class RedisStreamConfiguration {
+
+    private final RedisConnectionFactory redisConnectionFactory;
+    private f
