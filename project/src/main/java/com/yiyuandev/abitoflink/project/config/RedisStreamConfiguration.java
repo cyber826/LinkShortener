@@ -49,4 +49,14 @@ public class RedisStreamConfiguration {
     @Bean(initMethod = "start", destroyMethod = "stop")
     public StreamMessageListenerContainer<String, MapRecord<String, String, String>> streamMessageListenerContainer(ExecutorService asyncStreamConsumer) {
         StreamMessageListenerContainer.StreamMessageListenerContainerOptions<String, MapRecord<String, String, String>> options =
-                StreamMessageListenerContainer.StreamMessageListen
+                StreamMessageListenerContainer.StreamMessageListenerContainerOptions
+                        .builder()
+                        // number of messages per time
+                        .batchSize(10)
+                        .executor(asyncStreamConsumer)
+                        // time out less than ${spring.data.redis.timeout}
+                        .pollTimeout(Duration.ofSeconds(3))
+                        .build();
+        StreamMessageListenerContainer<String, MapRecord<String, String, String>> streamMessageListenerContainer =
+                StreamMessageListenerContainer.create(redisConnectionFactory, options);
+        streamM
