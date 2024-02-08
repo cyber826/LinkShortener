@@ -26,4 +26,17 @@ import static com.yiyuandev.abitoflink.project.common.constant.RedisKeyConstant.
 public class RedisStreamConfiguration {
 
     private final RedisConnectionFactory redisConnectionFactory;
-    private f
+    private final ShortLinkStatsSaveConsumer shortLinkStatsSaveConsumer;
+
+    @Bean
+    public ExecutorService asyncStreamConsumer() {
+        AtomicInteger index = new AtomicInteger();
+        int processors = Runtime.getRuntime().availableProcessors();
+        return new ThreadPoolExecutor(processors,
+                processors + processors >> 1,
+                60,
+                TimeUnit.SECONDS,
+                new LinkedBlockingQueue<>(),
+                runnable -> {
+                    Thread thread = new Thread(runnable);
+                    thread.setName("stream_consumer_short-link_stats_" + i
