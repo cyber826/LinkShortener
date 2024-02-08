@@ -39,4 +39,14 @@ public class RedisStreamConfiguration {
                 new LinkedBlockingQueue<>(),
                 runnable -> {
                     Thread thread = new Thread(runnable);
-                    thread.setName("stream_consumer_short-link_stats_" + i
+                    thread.setName("stream_consumer_short-link_stats_" + index.incrementAndGet());
+                    thread.setDaemon(true);
+                    return thread;
+                }
+        );
+    }
+
+    @Bean(initMethod = "start", destroyMethod = "stop")
+    public StreamMessageListenerContainer<String, MapRecord<String, String, String>> streamMessageListenerContainer(ExecutorService asyncStreamConsumer) {
+        StreamMessageListenerContainer.StreamMessageListenerContainerOptions<String, MapRecord<String, String, String>> options =
+                StreamMessageListenerContainer.StreamMessageListen
