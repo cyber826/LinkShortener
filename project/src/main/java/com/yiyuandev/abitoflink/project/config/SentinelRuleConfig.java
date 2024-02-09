@@ -22,4 +22,10 @@ public class SentinelRuleConfig implements InitializingBean {
         
         FlowRule createShortLinkRule = new FlowRule();
         createShortLinkRule.setResource("create_short-link");
-        createShortLinkRule.setGrade(RuleConstant
+        createShortLinkRule.setGrade(RuleConstant.FLOW_GRADE_QPS);
+        createShortLinkRule.setCount(1);
+
+        rules.add(createShortLinkRule);
+        FlowRuleManager.loadRules(rules);
+    }
+}
