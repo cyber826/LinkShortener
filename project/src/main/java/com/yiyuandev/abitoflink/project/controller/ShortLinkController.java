@@ -12,4 +12,23 @@ import com.yiyuandev.abitoflink.project.dto.resp.ShortLinkBatchCreateRespDTO;
 import com.yiyuandev.abitoflink.project.dto.resp.ShortLinkCreateRespDTO;
 import com.yiyuandev.abitoflink.project.dto.resp.ShortLinkGroupCountQueryRespDTO;
 import com.yiyuandev.abitoflink.project.dto.resp.ShortLinkPageRespDTO;
-import com.yiyuandev.abitof
+import com.yiyuandev.abitoflink.project.handler.CustomBlockHandler;
+import com.yiyuandev.abitoflink.project.service.ShortLinkService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+public class ShortLinkController {
+
+    private final ShortLinkService shortLinkService;
+
+    /**
+     * restore full short url from short uri
+     */
+    @GetMapping("/{short-uri}")
+    public void 
