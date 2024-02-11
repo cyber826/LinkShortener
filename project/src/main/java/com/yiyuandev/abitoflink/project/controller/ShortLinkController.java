@@ -31,4 +31,18 @@ public class ShortLinkController {
      * restore full short url from short uri
      */
     @GetMapping("/{short-uri}")
-    public void 
+    public void restoreUrl(@PathVariable("short-uri") String shortUri, HttpServletRequest request, HttpServletResponse response) {
+        shortLinkService.restoreUrl(shortUri, request, response);
+    }
+
+    /**
+     * create short link
+     *
+     * @param requestParam ShortLinkCreateReqDTO
+     * @return ShortLinkCreateRespDTO
+     */
+    @PostMapping("/api/abitoflink/v1/create")
+    @SentinelResource(
+            value = "create_short-link",
+            blockHandler = "createShortLinkBlockHandlerMethod",
+            blockHandlerClass = CustomB
