@@ -45,4 +45,19 @@ public class ShortLinkController {
     @SentinelResource(
             value = "create_short-link",
             blockHandler = "createShortLinkBlockHandlerMethod",
-            blockHandlerClass = CustomB
+            blockHandlerClass = CustomBlockHandler.class
+    )
+    public Result<ShortLinkCreateRespDTO> createShortLink(@RequestBody ShortLinkCreateReqDTO requestParam) {
+        return Results.success(shortLinkService.createShortLink(requestParam));
+    }
+
+    /**
+     * batch create short links
+     */
+    @PostMapping("/api/abitoflink/v1/create/batch")
+    public Result<ShortLinkBatchCreateRespDTO> batchCreateShortLink(@RequestBody ShortLinkBatchCreateReqDTO requestParam) {
+        return Results.success(shortLinkService.batchCreateShortLink(requestParam));
+    }
+
+    /**
+     * shor
