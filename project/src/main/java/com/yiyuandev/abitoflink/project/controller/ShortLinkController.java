@@ -76,4 +76,17 @@ public class ShortLinkController {
      * @param requestParam ShortLinkUpdateReqDTO
      */
     @PostMapping("/api/abitoflink/v1/update")
-    public Result<Void> updateShortLink(@RequestBody
+    public Result<Void> updateShortLink(@RequestBody ShortLinkUpdateReqDTO requestParam) {
+        shortLinkService.updateShortLink(requestParam);
+        return Results.success();
+    }
+
+    /**
+     * get list of gid and its number of short links
+     *
+     * @param requestParam {gid}
+     * @return List<ShortLinkGroupCountQueryRespDTO>
+     */
+    @GetMapping("/api/abitoflink/v1/count")
+    public Result<List<ShortLinkGroupCountQueryRespDTO>> listGroupShortLinkCount(@RequestParam("requestParam") List<String> requestParam) {
+        return Results.success(shortLinkService.listGroupShortLinkCount(
