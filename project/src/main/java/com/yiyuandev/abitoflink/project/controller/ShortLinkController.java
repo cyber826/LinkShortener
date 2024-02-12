@@ -89,4 +89,6 @@ public class ShortLinkController {
      */
     @GetMapping("/api/abitoflink/v1/count")
     public Result<List<ShortLinkGroupCountQueryRespDTO>> listGroupShortLinkCount(@RequestParam("requestParam") List<String> requestParam) {
-        return Results.success(shortLinkService.listGroupShortLinkCount(
+        return Results.success(shortLinkService.listGroupShortLinkCount(requestParam));
+    }
+}
