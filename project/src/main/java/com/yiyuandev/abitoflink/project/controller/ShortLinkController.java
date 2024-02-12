@@ -60,4 +60,20 @@ public class ShortLinkController {
     }
 
     /**
-     * shor
+     * short link pagination
+     *
+     * @param requestParam ShortLinkPageReqDTO
+     * @return IPage<ShortLinkPageRespDTO>
+     */
+    @GetMapping("/api/abitoflink/v1/page")
+    public Result<IPage<ShortLinkPageRespDTO>> pageShortLink(ShortLinkPageReqDTO requestParam) {
+        return Results.success(shortLinkService.pageShortLink(requestParam));
+    }
+
+    /**
+     * update short link
+     *
+     * @param requestParam ShortLinkUpdateReqDTO
+     */
+    @PostMapping("/api/abitoflink/v1/update")
+    public Result<Void> updateShortLink(@RequestBody
