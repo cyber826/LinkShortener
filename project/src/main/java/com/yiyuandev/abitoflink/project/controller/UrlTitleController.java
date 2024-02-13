@@ -15,4 +15,10 @@ public class UrlTitleController {
     private final UrlTitleService urlTitleService;
 
     /**
-     * get title of the webpage from ur
+     * get title of the webpage from url
+     */
+    @GetMapping("/api/abitoflink/v1/title")
+    public Result<String> getTitleByUrl(@RequestParam("url") String url){
+        return Results.success(urlTitleService.getTitleByUrl(url));
+    }
+}
