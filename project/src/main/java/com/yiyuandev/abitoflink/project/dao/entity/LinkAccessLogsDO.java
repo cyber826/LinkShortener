@@ -9,4 +9,43 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
-@NoArg
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName("t_link_access_logs")
+public class LinkAccessLogsDO extends BaseDO {
+
+    /**
+     * id
+     */
+    @TableId(type = IdType.ASSIGN_ID)
+    private Long id;
+
+    /**
+     * group id
+     */
+    private String gid;
+
+    /**
+     * full short url
+     */
+    private String fullShortUrl;
+
+    /**
+     * user info
+     */
+    private String user;
+
+    /**
+     * browser type
+     */
+    private String browser;
+
+    /**
+     * operating system
+     */
+    private String os;
+
+    /**
+     * ip
+     */
+    private St
