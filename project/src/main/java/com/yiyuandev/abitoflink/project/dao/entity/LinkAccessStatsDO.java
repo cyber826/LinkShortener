@@ -49,4 +49,15 @@ public class LinkAccessStatsDO extends BaseDO {
     /**
      * unique ip
      */
-    private Integer u
+    private Integer uip;
+
+    /**
+     * hour
+     */
+    private Integer hour;
+
+    /**
+     * week
+     */
+    private Integer weekday;
+}
