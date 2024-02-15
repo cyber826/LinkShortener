@@ -11,4 +11,42 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
-@NoArgsConst
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName("t_link_access_stats")
+public class LinkAccessStatsDO extends BaseDO {
+    /**
+     * id
+     */
+    @TableId(type = IdType.ASSIGN_ID)
+    private Long id;
+
+    /**
+     * group id
+     */
+    private String gid;
+
+    /**
+     * full short url
+     */
+    private String fullShortUrl;
+
+    /**
+     * date
+     */
+    private Date date;
+
+    /**
+     * page view
+     */
+    private Integer pv;
+
+    /**
+     * unique visitors
+     */
+    private Integer uv;
+
+    /**
+     * unique ip
+     */
+    private Integer u
