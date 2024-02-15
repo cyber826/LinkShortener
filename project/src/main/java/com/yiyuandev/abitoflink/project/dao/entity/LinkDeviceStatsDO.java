@@ -1,3 +1,4 @@
+
 package com.yiyuandev.abitoflink.project.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -16,8 +17,8 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("t_link_browser_stats")
-public class LinkBrowserStatsDO extends BaseDO {
+@TableName("t_link_device_stats")
+public class LinkDeviceStatsDO extends BaseDO {
 
     /**
      * id
@@ -46,7 +47,7 @@ public class LinkBrowserStatsDO extends BaseDO {
     private Integer cnt;
 
     /**
-     * browser
+     * device type
      */
-    private String browser;
+    private String device;
 }
