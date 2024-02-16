@@ -25,4 +25,40 @@ public class LinkLocaleStatsDO extends BaseDO {
     /**
      * group id
      */
-    private St
+    private String gid;
+
+    /**
+     * full short url
+     */
+    private String fullShortUrl;
+
+    /**
+     * date
+     */
+    private Date date;
+
+    /**
+     * visit count
+     */
+    private Integer cnt;
+
+    /**
+     * state name
+     */
+    private String state;
+
+    /**
+     * suburb name
+     */
+    private String suburb;
+
+    /**
+     * city name
+     */
+    private String city;
+
+    /**
+     * country name
+     */
+    private String country;
+}
