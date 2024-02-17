@@ -29,3 +29,24 @@ public class LinkNetworkStatsDO extends BaseDO {
      * group id
      */
     private String gid;
+
+    /**
+     * full short url
+     */
+    private String fullShortUrl;
+
+    /**
+     * date
+     */
+    private Date date;
+
+    /**
+     * visit count
+     */
+    private Integer cnt;
+
+    /**
+     * network type
+     */
+    private String network;
+}
