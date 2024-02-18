@@ -19,4 +19,37 @@ public class LinkStatsTodayDO extends BaseDO {
     /**
      * id
      */
-    @TableId(type = Id
+    @TableId(type = IdType.ASSIGN_ID)
+    private Long id;
+
+    /**
+     * group id
+     */
+    private String gid;
+
+    /**
+     * full short url
+     */
+    private String fullShortUrl;
+
+    /**
+     * today's date
+     */
+    private Date date;
+
+    /**
+     * today's page view
+     */
+    private Integer todayPv;
+
+    /**
+     * today's unique visitors
+     */
+    private Integer todayUv;
+
+    /**
+     * today's unique ip
+     */
+    private Integer todayUip;
+
+}
