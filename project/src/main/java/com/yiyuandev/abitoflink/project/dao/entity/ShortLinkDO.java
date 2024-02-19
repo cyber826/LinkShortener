@@ -92,3 +92,34 @@ public class ShortLinkDO extends BaseDO {
      * total unique visitors
      */
     private Integer totalUv;
+
+    /**
+     * total unique ip
+     */
+    private Integer totalUip;
+
+    /**
+     * today page view
+     */
+    @TableField(exist = false)
+    private Integer todayPv;
+
+    /**
+     * today unique visitors
+     */
+    @TableField(exist = false)
+    private Integer todayUv;
+
+    /**
+     * today unique ip
+     */
+    @TableField(exist = false)
+    private Integer todayUip;
+
+    /**
+     * delete time
+     */
+    private Long delTime;
+
+
+}
