@@ -23,4 +23,10 @@ public class ShortLinkGotoDO {
     /**
      * group id
      */
-    p
+    private String gid;
+
+    /**
+     * full short url
+     */
+    private String fullShortUrl;
+}
