@@ -24,4 +24,17 @@ public interface LinkAccessLogsMapper extends BaseMapper<LinkAccessLogsDO> {
             "WHERE " +
             "    full_short_url = #{param.fullShortUrl} " +
             "    AND gid = #{param.gid} " +
-            "    AND c
+            "    AND creation_time BETWEEN #{param.startDate} and ADDDATE(#{param.endDate}, 1) " +
+            "GROUP BY " +
+            "    full_short_url, gid, ip " +
+            "ORDER BY " +
+            "    count DESC " +
+            "LIMIT 5;")
+    List<HashMap<String, Object>> listTopIpByShortLink(@Param("param") ShortLinkStatsReqDTO requestParam);
+
+    /**
+     * Retrieve high-frequency ip access data within a specified date range in the same short link group
+     */
+    @Select("SELECT " +
+            "    ip, " +
+            "    COUNT(ip) AS coun
