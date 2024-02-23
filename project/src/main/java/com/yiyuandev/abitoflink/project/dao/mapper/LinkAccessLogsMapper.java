@@ -62,4 +62,20 @@ public interface LinkAccessLogsMapper extends BaseMapper<LinkAccessLogsDO> {
             "        CASE WHEN COUNT(DISTINCT DATE(creation_time)) = 1 AND MAX(creation_time) >= #{param.startDate} AND MAX(creation_time) <= ADDDATE(#{param.endDate}, 1) THEN 1 ELSE 0 END AS new_user " +
             "    FROM " +
             "        t_link_access_logs " +
-         
+            "    WHERE " +
+            "        full_short_url = #{param.fullShortUrl} " +
+            "        AND gid = #{param.gid} " +
+            "    GROUP BY " +
+            "        user " +
+            ") AS user_counts;")
+    HashMap<String, Object> findUvTypeCntByShortLink(@Param("param") ShortLinkStatsReqDTO requestParam);
+
+
+    /**
+     * check if user type is new or returning
+     */
+    @Select("<script> " +
+            "SELECT " +
+            "    user, " +
+            "    CASE " +
+            "        WHEN MIN(creation_time) BETWEEN #{startDate} AND #{en
