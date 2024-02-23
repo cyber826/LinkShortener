@@ -53,3 +53,13 @@ public interface LinkAccessLogsMapper extends BaseMapper<LinkAccessLogsDO> {
     /**
      * Retrieve data on new and returning visitors within a specified date range
      */
+    @Select("SELECT " +
+            "    SUM(old_user) AS oldUserCnt, " +
+            "    SUM(new_user) AS newUserCnt " +
+            "FROM ( " +
+            "    SELECT " +
+            "        CASE WHEN COUNT(DISTINCT DATE(creation_time)) > 1 THEN 1 ELSE 0 END AS old_user, " +
+            "        CASE WHEN COUNT(DISTINCT DATE(creation_time)) = 1 AND MAX(creation_time) >= #{param.startDate} AND MAX(creation_time) <= ADDDATE(#{param.endDate}, 1) THEN 1 ELSE 0 END AS new_user " +
+            "    FROM " +
+            "        t_link_access_logs " +
+         
