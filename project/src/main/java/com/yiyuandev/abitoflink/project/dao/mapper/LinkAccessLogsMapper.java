@@ -108,4 +108,18 @@ public interface LinkAccessLogsMapper extends BaseMapper<LinkAccessLogsDO> {
     @Select("<script> " +
             "SELECT " +
             "    user, " +
-            "    CASE " 
+            "    CASE " +
+            "        WHEN MIN(creation_time) BETWEEN #{startDate} AND #{endDate} THEN 'new user' " +
+            "        ELSE 'returning user' " +
+            "    END AS uvType " +
+            "FROM " +
+            "    t_link_access_logs " +
+            "WHERE " +
+            "    gid = #{gid} " +
+            "    AND user IN " +
+            "    <foreach item='item' index='index' collection='userAccessLogsList' open='(' separator=',' close=')'> " +
+            "        #{item} " +
+            "    </foreach> " +
+            "GROUP BY " +
+            "    user;" +
+      
