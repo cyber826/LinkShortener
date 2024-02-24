@@ -122,4 +122,21 @@ public interface LinkAccessLogsMapper extends BaseMapper<LinkAccessLogsDO> {
             "    </foreach> " +
             "GROUP BY " +
             "    user;" +
-      
+            "    </script>"
+    )
+    List<Map<String, Object>> selectGroupUvTypeByUsers(
+            @Param("gid") String gid,
+            @Param("startDate") String startDate,
+            @Param("endDate") String endDate,
+            @Param("userAccessLogsList") List<String> userAccessLogsList
+    );
+
+
+    /**
+     * Retrieve basic stats for a single short link within a specified date range
+     */
+    @Select("SELECT " +
+            "    COUNT(user) AS pv, " +
+            "    COUNT(DISTINCT user) AS uv, " +
+            "    COUNT(DISTINCT ip) AS uip " +
+            "FROM " +
