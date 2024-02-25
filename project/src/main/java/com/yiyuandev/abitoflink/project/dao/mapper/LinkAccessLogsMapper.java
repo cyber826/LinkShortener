@@ -140,3 +140,16 @@ public interface LinkAccessLogsMapper extends BaseMapper<LinkAccessLogsDO> {
             "    COUNT(DISTINCT user) AS uv, " +
             "    COUNT(DISTINCT ip) AS uip " +
             "FROM " +
+            "    t_link_access_logs " +
+            "WHERE " +
+            "    full_short_url = #{param.fullShortUrl} " +
+            "    AND gid = #{param.gid} " +
+            "    AND creation_time BETWEEN #{param.startDate} and ADDDATE(#{param.endDate}, 1) " +
+            "GROUP BY " +
+            "    full_short_url, gid;")
+    LinkAccessStatsDO findPvUvUidStatsByShortLink(@Param("param") ShortLinkStatsReqDTO requestParam);
+
+    /**
+     * Retrieve basic stats for short link in the same group within a specified date range
+     */
+    @S
