@@ -31,4 +31,18 @@ public interface LinkBrowserStatsMapper extends BaseMapper<LinkBrowserStatsDO> {
             "    AND date BETWEEN #{param.startDate} and ADDDATE(#{param.endDate}, 1) " +
             "GROUP BY " +
             "    full_short_url, gid, browser;")
-    List<HashMap<String
+    List<HashMap<String, Object>> listBrowserStatsByShortLink(@Param("param") ShortLinkStatsReqDTO requestParam);
+
+    /**
+     * Retrieve browser stats of short links in the same group within a specified date range
+     */
+    @Select("SELECT " +
+            "    browser, " +
+            "    SUM(cnt) AS count " +
+            "FROM " +
+            "    t_link_browser_stats " +
+            "WHERE " +
+            "    gid = #{param.gid} " +
+            "    AND date BETWEEN #{param.startDate} and ADDDATE(#{param.endDate}, 1) " +
+            "GROUP BY " +
+            "    gid, browser;
