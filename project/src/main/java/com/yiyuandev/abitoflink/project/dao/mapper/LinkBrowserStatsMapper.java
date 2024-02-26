@@ -45,4 +45,6 @@ public interface LinkBrowserStatsMapper extends BaseMapper<LinkBrowserStatsDO> {
             "    gid = #{param.gid} " +
             "    AND date BETWEEN #{param.startDate} and ADDDATE(#{param.endDate}, 1) " +
             "GROUP BY " +
-            "    gid, browser;
+            "    gid, browser;")
+    List<HashMap<String, Object>> listBrowserStatsByGroup(@Param("param") ShortLinkGroupStatsReqDTO requestParam);
+}
