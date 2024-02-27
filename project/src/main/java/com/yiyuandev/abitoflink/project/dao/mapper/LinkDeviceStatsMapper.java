@@ -10,4 +10,13 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-pu
+public interface LinkDeviceStatsMapper extends BaseMapper<LinkDeviceStatsDO> {
+
+    @Insert("INSERT INTO t_link_device_stats (full_short_url, gid, date, cnt, device, creation_time, update_time, del_flag )" +
+            "VALUES" +
+            "(#{linkDeviceStats.fullShortUrl}, #{linkDeviceStats.gid}, #{linkDeviceStats.date}, #{linkDeviceStats.cnt}, #{linkDeviceStats.device}, NOW(), NOW(), 0 )" +
+            "ON DUPLICATE KEY UPDATE cnt = cnt + #{linkDeviceStats.cnt};")
+    void shortLinkDeviceStats(@Param("linkDeviceStats") LinkDeviceStatsDO deviceStatsDO);
+
+
+    @S
