@@ -33,4 +33,17 @@ public interface LinkDeviceStatsMapper extends BaseMapper<LinkDeviceStatsDO> {
     List<LinkDeviceStatsDO> listDeviceStatsByShortLink(@Param("param") ShortLinkStatsReqDTO requestParam);
 
     /**
-     * Retrieve device stats of short links in the same 
+     * Retrieve device stats of short links in the same group within a specified date range
+     */
+    @Select("SELECT " +
+            "    device, " +
+            "    SUM(cnt) AS cnt " +
+            "FROM " +
+            "    t_link_device_stats " +
+            "WHERE " +
+            "    gid = #{param.gid} " +
+            "    AND date BETWEEN #{param.startDate} and ADDDATE(#{param.endDate}, 1) " +
+            "GROUP BY " +
+            "    gid, device;")
+    List<LinkDeviceStatsDO> listDeviceStatsByGroup(@Param("param") ShortLinkGroupStatsReqDTO requestParam);
+}
