@@ -34,4 +34,13 @@ public interface LinkLocaleStatsMapper extends BaseMapper<LinkLocaleStatsDO> {
 
     @Select("SELECT " +
             "    suburb, " +
- 
+            "    SUM(cnt) AS cnt " +
+            "FROM " +
+            "    t_link_locale_stats " +
+            "WHERE " +
+            "    gid = #{param.gid} " +
+            "    AND date BETWEEN #{param.startDate} and ADDDATE(#{param.endDate}, 1) " +
+            "GROUP BY " +
+            "    gid, suburb;")
+    List<LinkLocaleStatsDO> listLocaleByGroup(@Param("param") ShortLinkGroupStatsReqDTO requestParam);
+}
