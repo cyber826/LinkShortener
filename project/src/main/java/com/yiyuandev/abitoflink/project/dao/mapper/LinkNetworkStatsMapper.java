@@ -37,4 +37,9 @@ public interface LinkNetworkStatsMapper extends BaseMapper<LinkNetworkStatsDO> {
             "FROM " +
             "    t_link_network_stats " +
             "WHERE " +
-            "    gid = #{param.gid}
+            "    gid = #{param.gid} " +
+            "    AND date BETWEEN #{param.startDate} and ADDDATE(#{param.endDate}, 1) " +
+            "GROUP BY " +
+            "    gid, network;")
+    List<LinkNetworkStatsDO> listNetworkStatsByGroup(@Param("param") ShortLinkGroupStatsReqDTO requestParam);
+}
