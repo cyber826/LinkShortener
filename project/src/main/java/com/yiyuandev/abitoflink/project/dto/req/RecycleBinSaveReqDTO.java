@@ -3,7 +3,7 @@ package com.yiyuandev.abitoflink.project.dto.req;
 import lombok.Data;
 
 @Data
-public class RecycleBinRemoveReqDTO {
+public class RecycleBinSaveReqDTO {
     /**
      * group id
      */
