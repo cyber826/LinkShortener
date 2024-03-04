@@ -47,4 +47,17 @@ public class ShortLinkStatsRecordDTO {
     private String uv;
 
     /**
-     * unique visito
+     * unique visitors flag
+     */
+    private Boolean uvFlag;
+
+    /**
+     * uip flag
+     */
+    private Boolean uipFlag;
+
+    /**
+     * message queue unique id
+     */
+    private String keys;
+}
