@@ -43,3 +43,9 @@ public class ShortLinkCreateReqDTO {
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+11")
     private Date validDate;
+
+    /**
+     * description
+     */
+    private String description;
+}
