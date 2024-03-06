@@ -28,4 +28,9 @@ public class ShortLinkBaseInfoRespDTO {
     private String fullShortUrl;
 
     /**
-     * origina
+     * original link column
+     */
+    @ExcelProperty("original-link")
+    @ColumnWidth(120)
+    private String originUrl;
+}
