@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShortLinkStatsLocaleRespDTO {
+public class ShortLinkStatsNetworkRespDTO {
 
     /**
      * count
@@ -17,9 +17,9 @@ public class ShortLinkStatsLocaleRespDTO {
     private Integer cnt;
 
     /**
-     * locale
+     * network type
      */
-    private String locale;
+    private String network;
 
     private Double ratio;
 }
