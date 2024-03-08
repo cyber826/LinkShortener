@@ -14,4 +14,38 @@ import java.util.List;
 public class ShortLinkStatsRespDTO {
 
     /**
-   
+     * page view
+     */
+    private Integer pv;
+
+    /**
+     * unique visitor
+     */
+    private Integer uv;
+
+    /**
+     * unique ip
+     */
+    private Integer uip;
+
+    /**
+     * basic access stats
+     */
+    private List<ShortLinkStatsAccessDailyRespDTO> daily;
+
+    /**
+     * locale access stats
+     */
+    private List<ShortLinkStatsLocaleRespDTO> localeStats;
+
+    /**
+     * access stats on hour basis
+     */
+    private List<Integer> hourStats;
+
+    /**
+     * high frequent ip access
+     */
+    private List<ShortLinkStatsTopIpRespDTO> topIpStats;
+
+    /**
