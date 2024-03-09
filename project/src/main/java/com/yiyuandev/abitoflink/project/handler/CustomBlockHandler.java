@@ -7,4 +7,7 @@ import com.yiyuandev.abitoflink.project.dto.resp.ShortLinkCreateRespDTO;
 
 public class CustomBlockHandler {
 
-    public static Result<ShortLinkCreateR
+    public static Result<ShortLinkCreateRespDTO> createShortLinkBlockHandlerMethod(ShortLinkCreateReqDTO requestParam, BlockException exception) {
+        return new Result<ShortLinkCreateRespDTO>().setCode("B100000").setMessage("Too many requests，please try again later");
+    }
+}
