@@ -49,3 +49,29 @@ public class ShortLinkStatsRespDTO {
     private List<ShortLinkStatsTopIpRespDTO> topIpStats;
 
     /**
+     * access stats on weekly basis
+     */
+    private List<Integer> weekdayStats;
+
+    /**
+     * browser access stats
+     */
+    private List<ShortLinkStatsBrowserRespDTO> browserStats;
+
+    /**
+     * operating system access stats
+     */
+    private List<ShortLinkStatsOsRespDTO> osStats;
+
+    /**
+     * unique visitor type stats
+     */
+    private List<ShortLinkStatsUvRespDTO> uvTypeStats;
+
+    /**
+     * device type stats
+     */
+    private List<ShortLinkStatsDeviceRespDTO> deviceStats;
+
+    /**
+     * network type s
