@@ -19,3 +19,17 @@ import static com.yiyuandev.abitoflink.project.common.constant.RedisKeyConstant.
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
+public class DelayShortLinkStatsConsumer implements InitializingBean {
+
+    private final RedissonClient redissonClient;
+    private final ShortLinkService shortLinkService;
+    private final MessageQueueIdempotentHandler messageQueueIdempotentHandler;
+
+
+    public void onMessage() {
+        Executors.newSingleThreadExecutor(
+                        runnable -> {
+                            Thread thread = new Thread(runnable);
+                            thread.setName("delay_short-link_stats_consumer");
+                            thread.setDaemon(
