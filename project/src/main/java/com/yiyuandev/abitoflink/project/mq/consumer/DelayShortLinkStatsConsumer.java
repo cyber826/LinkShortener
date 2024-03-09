@@ -32,4 +32,13 @@ public class DelayShortLinkStatsConsumer implements InitializingBean {
                         runnable -> {
                             Thread thread = new Thread(runnable);
                             thread.setName("delay_short-link_stats_consumer");
-                            thread.setDaemon(
+                            thread.setDaemon(Boolean.TRUE);
+                            return thread;
+                        })
+                .execute(() -> {
+                    RBlockingDeque<ShortLinkStatsRecordDTO> blockingDeque = redissonClient.getBlockingDeque(DELAY_QUEUE_STATS_KEY);
+                    RDelayedQueue<ShortLinkStatsRecordDTO> delayedQueue = redissonClient.getDelayedQueue(blockingDeque);
+                    for (; ; ) {
+                        try {
+                            ShortLinkStatsRecordDTO statsRecord = delayedQueue.poll();
+                            if (statsRecord != 
