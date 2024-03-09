@@ -74,4 +74,7 @@ public class ShortLinkStatsRespDTO {
     private List<ShortLinkStatsDeviceRespDTO> deviceStats;
 
     /**
-     * network type s
+     * network type stats
+     */
+    private List<ShortLinkStatsNetworkRespDTO> networkStats;
+}
