@@ -41,4 +41,11 @@ public class DelayShortLinkStatsConsumer implements InitializingBean {
                     for (; ; ) {
                         try {
                             ShortLinkStatsRecordDTO statsRecord = delayedQueue.poll();
-                            if (statsRecord != 
+                            if (statsRecord != null) {
+                                if (messageQueueIdempotentHandler.isMessageProcessed(statsRecord.getKeys())) {
+                                    // check if the message has completed
+                                    if (messageQueueIdempotentHandler.isAccomplish(statsRecord.getKeys())) {
+                                        return;
+                                    }
+                                    throw new ServiceException("the message has not completed and requires the message queue to retry");
+                         
