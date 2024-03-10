@@ -48,4 +48,12 @@ public class DelayShortLinkStatsConsumer implements InitializingBean {
                                         return;
                                     }
                                     throw new ServiceException("the message has not completed and requires the message queue to retry");
-                         
+                                }
+                                try {
+                                    shortLinkService.shortLinkStats(null, null, statsRecord);
+                                } catch (Throwable ex) {
+                                    messageQueueIdempotentHandler.delMessageProcessed(statsRecord.getKeys());
+                                    log.error("delay short link stats consumption error", ex);
+                                }
+                                messageQueueIdempotentHandler.setAccomplish(statsRecord.getKeys());
+                       
