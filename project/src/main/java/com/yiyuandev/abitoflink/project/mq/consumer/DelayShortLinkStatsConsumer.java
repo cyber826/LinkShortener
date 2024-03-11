@@ -56,4 +56,17 @@ public class DelayShortLinkStatsConsumer implements InitializingBean {
                                     log.error("delay short link stats consumption error", ex);
                                 }
                                 messageQueueIdempotentHandler.setAccomplish(statsRecord.getKeys());
-                       
+                                continue;
+                            }
+                            LockSupport.parkUntil(500);
+                        } catch (Throwable ignored) {
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        onMessage();
+    }
+}
