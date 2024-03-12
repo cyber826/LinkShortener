@@ -14,4 +14,17 @@ import static com.yiyuandev.abitoflink.project.common.constant.RedisKeyConstant.
 
 @Component
 @RequiredArgsConstructor
-public clas
+public class DelayShortLinkStatsProducer {
+
+    private final RedissonClient redissonClient;
+
+    /**
+     * delayed mq for short link stats
+     *
+     * @param statsRecord ShortLinkStatsRecordDTO
+     */
+    public void send(ShortLinkStatsRecordDTO statsRecord) {
+        statsRecord.setKeys(UUID.fastUUID().toString());
+        RBlockingDeque<ShortLinkStatsRecordDTO> blockingDeque = redissonClient.getBlockingDeque(DELAY_QUEUE_STATS_KEY);
+        RDelayedQueue<ShortLinkStatsRecordDTO> delayedQueue = redissonClient.getDelayedQueue(blockingDeque);
+        delayedQueue.offer(statsRe
