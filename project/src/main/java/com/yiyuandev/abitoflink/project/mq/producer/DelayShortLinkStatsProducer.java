@@ -27,4 +27,6 @@ public class DelayShortLinkStatsProducer {
         statsRecord.setKeys(UUID.fastUUID().toString());
         RBlockingDeque<ShortLinkStatsRecordDTO> blockingDeque = redissonClient.getBlockingDeque(DELAY_QUEUE_STATS_KEY);
         RDelayedQueue<ShortLinkStatsRecordDTO> delayedQueue = redissonClient.getDelayedQueue(blockingDeque);
-        delayedQueue.offer(statsRe
+        delayedQueue.offer(statsRecord, 5, TimeUnit.SECONDS);
+    }
+}
