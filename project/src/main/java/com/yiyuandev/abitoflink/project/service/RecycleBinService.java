@@ -14,4 +14,21 @@ public interface RecycleBinService extends IService<ShortLinkDO> {
      * move to recycle bin
      * @param requestParam RecycleBinSaveReqDTO
      */
-    void saveRecycleBin(RecycleBinSaveReqDTO requestPar
+    void saveRecycleBin(RecycleBinSaveReqDTO requestParam);
+
+    /**
+     * recycle bin item pagination
+     */
+    IPage<ShortLinkPageRespDTO> pageRecycleBinShortLink(ShortLinkRecycleBinPageReqDTO requestParam);
+
+    /**
+     * recover short link from recycle bin
+     */
+    void recoverRecycleBin(RecycleBinRecoverReqDTO requestParam);
+
+    /**
+     * remove short link from recycle bin
+     * @param requestParam RecycleBinRemoveReqDTO
+     */
+    void removeRecycleBin(RecycleBinRemoveReqDTO requestParam);
+}
