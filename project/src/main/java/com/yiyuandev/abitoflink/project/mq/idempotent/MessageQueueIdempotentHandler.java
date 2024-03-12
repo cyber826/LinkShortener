@@ -34,3 +34,24 @@ public class MessageQueueIdempotentHandler {
         String key = IDEMPOTENT_KEY_PREFIX + messageId;
         return Objects.equals(stringRedisTemplate.opsForValue().get(key), "1");
     }
+
+    /**
+     * set message is accomplished
+     *
+     * @param messageId message Id
+     */
+    public void setAccomplish(String messageId) {
+        String key = IDEMPOTENT_KEY_PREFIX + messageId;
+        stringRedisTemplate.opsForValue().set(key, "1", 2, TimeUnit.MINUTES);
+    }
+
+    /**
+     * if message processing has error, remove idempotent key
+     *
+     * @param messageId message Id
+     */
+    public void delMessageProcessed(String messageId) {
+        String key = IDEMPOTENT_KEY_PREFIX + messageId;
+        stringRedisTemplate.delete(key);
+    }
+}
