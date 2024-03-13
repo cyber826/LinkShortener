@@ -8,4 +8,12 @@ import com.yiyuandev.abitoflink.project.dto.req.ShortLinkStatsReqDTO;
 import com.yiyuandev.abitoflink.project.dto.resp.ShortLinkStatsAccessRecordRespDTO;
 import com.yiyuandev.abitoflink.project.dto.resp.ShortLinkStatsRespDTO;
 
-public interface ShortLinkStatsSer
+public interface ShortLinkStatsService {
+    ShortLinkStatsRespDTO oneShortLinkStats(ShortLinkStatsReqDTO requestParam);
+
+    IPage<ShortLinkStatsAccessRecordRespDTO> shortLinkStatsAccessRecord(ShortLinkStatsAccessRecordReqDTO requestParam);
+
+    ShortLinkStatsRespDTO groupShortLinkStats(ShortLinkGroupStatsReqDTO requestParam);
+
+    IPage<ShortLinkStatsAccessRecordRespDTO> groupStatsAccessRecord(ShortLinkGroupStatsAccessRecordReqDTO requestParam);
+}
