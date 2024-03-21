@@ -94,4 +94,17 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                 .domain(createShortLinkDefaultDomain)
                 .originUrl(requestParam.getOriginUrl())
                 .gid(requestParam.getGid())
-                .createdType(
+                .createdType(requestParam.getCreatedType())
+                .validDateType(requestParam.getValidDateType())
+                .validDate(requestParam.getValidDate())
+                .description(requestParam.getDescription())
+                .shortUri(generatedSuffix)
+                .favicon(getFavicon(requestParam.getOriginUrl()))
+                .fullShortUrl(fullShortUrl)
+                .enableStatus(0)
+                .delTime(0L)
+                .build();
+
+        ShortLinkGotoDO shortLinkGotoDO = ShortLinkGotoDO.builder()
+                .gid(requestParam.getGid())
+                .fullShortUrl(ful
