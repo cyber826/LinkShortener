@@ -107,4 +107,20 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
 
         ShortLinkGotoDO shortLinkGotoDO = ShortLinkGotoDO.builder()
                 .gid(requestParam.getGid())
-                .fullShortUrl(ful
+                .fullShortUrl(fullShortUrl)
+                .build();
+
+        try {
+            baseMapper.insert(shortLinkDO);
+
+            shortLinkGotoMapper.insert(shortLinkGotoDO);
+
+        } catch (DuplicateKeyException ex) {
+            throw new ServiceException(String.format("short link：%s found duplicate", fullShortUrl));
+        }
+
+        stringRedisTemplate.opsForValue().set(
+                String.format(GOTO_SHORT_LINK_KEY, fullShortUrl),
+                requestParam.getOriginUrl(),
+                LinkUtil.getLinkCacheValidTime(requestParam.getValidDate()), TimeUnit.MILLISECONDS
+  
