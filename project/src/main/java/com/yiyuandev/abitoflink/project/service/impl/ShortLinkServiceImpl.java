@@ -123,4 +123,17 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                 String.format(GOTO_SHORT_LINK_KEY, fullShortUrl),
                 requestParam.getOriginUrl(),
                 LinkUtil.getLinkCacheValidTime(requestParam.getValidDate()), TimeUnit.MILLISECONDS
-  
+        );
+
+        shortUriCreateCachePenetrationBloomFilter.add(fullShortUrl);
+        return ShortLinkCreateRespDTO.builder()
+                .gid(requestParam.getGid())
+                .originUrl(requestParam.getOriginUrl())
+                .fullShortUrl(shortLinkDO.getFullShortUrl())
+                .build();
+    }
+
+    @Override
+    public IPage<ShortLinkPageRespDTO> pageShortLink(ShortLinkPageReqDTO requestParam) {
+        IPage<ShortLinkDO> resultPage = baseMapper.pageLink(requestParam);
+        return resultPage.convert(each -> BeanUtil.toBean(each, ShortLinkPageRes
