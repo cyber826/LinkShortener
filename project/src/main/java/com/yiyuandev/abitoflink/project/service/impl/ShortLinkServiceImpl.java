@@ -180,4 +180,18 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
             ShortLinkDO shortLinkDO = ShortLinkDO.builder()
                     .domain(hasShortLinkDO.getDomain())
                     .shortUri(hasShortLinkDO.getShortUri())
-                    .gid(requestPa
+                    .gid(requestParam.getGid())
+                    .clickNum(hasShortLinkDO.getClickNum())
+                    .favicon(hasShortLinkDO.getFavicon())
+                    .createdType(hasShortLinkDO.getCreatedType())
+
+                    //changeable parameters
+                    .originUrl(requestParam.getOriginUrl())
+                    .description(requestParam.getDescription())
+                    .validDate(requestParam.getValidDate())
+                    .validDateType(requestParam.getValidDateType())
+                    .build();
+            baseMapper.update(shortLinkDO, updateWrapper);
+
+        } else {
+          
