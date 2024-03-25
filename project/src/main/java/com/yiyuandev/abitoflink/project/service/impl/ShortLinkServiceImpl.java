@@ -202,4 +202,14 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
             try {
                 LambdaUpdateWrapper<ShortLinkDO> linkUpdateWrapper = Wrappers.lambdaUpdate(ShortLinkDO.class)
                         .eq(ShortLinkDO::getFullShortUrl, requestParam.getFullShortUrl())
-                      
+                        .eq(ShortLinkDO::getGid, hasShortLinkDO.getGid())
+                        .eq(ShortLinkDO::getDelFlag, 0)
+                        .eq(ShortLinkDO::getDelTime, 0L)
+                        .eq(ShortLinkDO::getEnableStatus, 0);
+
+                ShortLinkDO delShortLinkDO = ShortLinkDO.builder()
+                        .delTime(System.currentTimeMillis())
+                        .build();
+                delShortLinkDO.setDelFlag(1);
+                baseMapper.update(delShortLinkDO, linkUpdateWrapper);
+                ShortLinkDO shortLinkDO = ShortLink
