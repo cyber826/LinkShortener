@@ -337,4 +337,17 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
 
         String originalLink = stringRedisTemplate.opsForValue().get(String.format(GOTO_SHORT_LINK_KEY, fullShortUrl));
 
-        if (StrUtil.isNotBlank(orig
+        if (StrUtil.isNotBlank(originalLink)) {
+            ShortLinkStatsRecordDTO statsRecord = buildLinkStatsRecordAndSetUser(fullShortUrl, request, response);
+            shortLinkStats(fullShortUrl, null, statsRecord);
+            response.sendRedirect(originalLink);
+            return;
+        }
+
+        boolean contains = shortUriCreateCachePenetrationBloomFilter.contains(fullShortUrl);
+        if (!contains) {
+            response.sendRedirect("/page/notfound");
+            return;
+        }
+
+        String gotoIsNullShortLink = stringRedisTemplate.opsForValue().get(Stri
