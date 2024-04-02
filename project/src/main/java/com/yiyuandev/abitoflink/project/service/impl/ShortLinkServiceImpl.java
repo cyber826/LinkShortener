@@ -350,4 +350,17 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
             return;
         }
 
-        String gotoIsNullShortLink = stringRedisTemplate.opsForValue().get(Stri
+        String gotoIsNullShortLink = stringRedisTemplate.opsForValue().get(String.format(GOTO_IS_NULL_SHORT_LINK_KEY, fullShortUrl));
+        if (StrUtil.isNotBlank(gotoIsNullShortLink)) {
+            response.sendRedirect("/page/notfound");
+            return;
+        }
+
+
+        RLock lock = redissonClient.getLock(String.format(LOCK_GOTO_SHORT_LINK_KEY, fullShortUrl));
+        lock.lock();
+
+        try {
+            originalLink = stringRedisTemplate.opsForValue().get(String.format(GOTO_SHORT_LINK_KEY, fullShortUrl));
+            if (StrUtil.isNotBlank(originalLink)) {
+                ShortLinkStatsRecordDTO statsRecord = buildLinkStatsRecordAndSetUser(fullShortUrl, request, resp
