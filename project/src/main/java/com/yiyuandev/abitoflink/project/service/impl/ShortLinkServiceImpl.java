@@ -374,4 +374,15 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
             ShortLinkGotoDO shortLinkGotoDO = shortLinkGotoMapper.selectOne(linkGotoQueryWrapper);
 
             if (shortLinkGotoDO == null) {
-                stringRedisTemplate.opsForValue().set(String.format
+                stringRedisTemplate.opsForValue().set(String.format(GOTO_IS_NULL_SHORT_LINK_KEY, fullShortUrl), "-", 30L, TimeUnit.MINUTES);
+                response.sendRedirect("/page/notfound");
+                return;
+            }
+
+            LambdaQueryWrapper<ShortLinkDO> queryWrapper = Wrappers.lambdaQuery(ShortLinkDO.class)
+                    .eq(ShortLinkDO::getGid, shortLinkGotoDO.getGid())
+                    .eq(ShortLinkDO::getFullShortUrl, fullShortUrl)
+                    .eq(ShortLinkDO::getDelFlag, 0)
+                    .eq(ShortLinkDO::getEnableStatus, 0);
+
+            ShortLinkDO shortLinkDO = baseMapper.selec
