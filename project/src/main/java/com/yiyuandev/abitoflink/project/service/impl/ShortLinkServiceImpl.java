@@ -424,4 +424,17 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                 result.add(linkBaseInfoRespDTO);
             } catch (Throwable ex) {
                 log.error("Short link batch create error，original parameters：{}", originUrls.get(i));
-            
+            }
+        }
+        return ShortLinkBatchCreateRespDTO.builder()
+                .total(result.size())
+                .baseLinkInfos(result)
+                .build();
+    }
+
+    private ShortLinkStatsRecordDTO buildLinkStatsRecordAndSetUser(String fullShortUrl, HttpServletRequest request, HttpServletResponse response) {
+        AtomicBoolean uvFlag = new AtomicBoolean();
+        Cookie[] cookies = request.getCookies();
+        AtomicReference<String> uv = new AtomicReference<>();
+        Runnable addResponseCookieTask = () -> {
+           
