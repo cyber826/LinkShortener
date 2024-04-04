@@ -415,4 +415,13 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
             shortLinkCreateReqDTO.setOriginUrl(originUrls.get(i));
             shortLinkCreateReqDTO.setDescription(descriptions.get(i));
             try {
-                ShortLinkCreateRespDTO 
+                ShortLinkCreateRespDTO shortLink = createShortLink(shortLinkCreateReqDTO);
+                ShortLinkBaseInfoRespDTO linkBaseInfoRespDTO = ShortLinkBaseInfoRespDTO.builder()
+                        .fullShortUrl(shortLink.getFullShortUrl())
+                        .originUrl(shortLink.getOriginUrl())
+                        .description(descriptions.get(i))
+                        .build();
+                result.add(linkBaseInfoRespDTO);
+            } catch (Throwable ex) {
+                log.error("Short link batch create error，original parameters：{}", originUrls.get(i));
+            
