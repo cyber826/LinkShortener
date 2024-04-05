@@ -448,4 +448,15 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
         if (ArrayUtil.isNotEmpty(cookies)) {
             Arrays.stream(cookies)
                     .filter(each -> Objects.equals(each.getName(), "uv"))
-   
+                    .findFirst()
+                    .map(Cookie::getValue)
+                    .ifPresentOrElse(each -> {
+                        uv.set(each);
+                        Long uvAdded = stringRedisTemplate.opsForSet().add(SHORT_LINK_STATS_UV_KEY + fullShortUrl, each);
+                        uvFlag.set(uvAdded != null && uvAdded > 0L);
+                    }, addResponseCookieTask);
+        } else {
+            addResponseCookieTask.run();
+        }
+        String remoteAddr = StatsUtil.getIp(request);
+        String os = StatsUtil.get
