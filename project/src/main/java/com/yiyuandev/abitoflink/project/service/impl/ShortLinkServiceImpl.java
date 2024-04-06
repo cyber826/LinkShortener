@@ -488,4 +488,15 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
 
     private String generateSuffix(ShortLinkCreateReqDTO requestParam) {
         int generateCount = 0;
-    
+        String shortUri;
+        while (true) {
+            if (generateCount > 10) {
+                throw new ServiceException("short link generation is too frequent, please try again later");
+            }
+            String originUrl = requestParam.getOriginUrl();
+            originUrl += UUID.randomUUID().toString();
+            shortUri = HashUtil.hashToBase62(originUrl);
+            if (!shortUriCreateCachePenetrationBloomFilter.contains(createShortLinkDefaultDomain + "/" + shortUri)) {
+                break;
+            }
+          
