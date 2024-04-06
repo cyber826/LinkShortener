@@ -472,4 +472,20 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                 .uipFlag(uipFlag)
                 .remoteAddr(remoteAddr)
                 .os(os)
-      
+                .browser(browser)
+                .device(device)
+                .network(network)
+                .build();
+    }
+
+    public void shortLinkStats(String fullShortUrl, String gid, ShortLinkStatsRecordDTO statsRecord) {
+        Map<String, String> producerMap = new HashMap<>();
+        producerMap.put("fullShortUrl", fullShortUrl);
+        producerMap.put("gid", gid);
+        producerMap.put("statsRecord", JSON.toJSONString(statsRecord));
+        shortLinkStatsSaveProducer.send(producerMap);
+    }
+
+    private String generateSuffix(ShortLinkCreateReqDTO requestParam) {
+        int generateCount = 0;
+    
