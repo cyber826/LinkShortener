@@ -31,4 +31,17 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
     private final LinkLocaleStatsMapper linkLocaleStatsMapper;
     private final LinkAccessLogsMapper linkAccessLogsMapper;
     private final LinkBrowserStatsMapper linkBrowserStatsMapper;
-    private
+    private final LinkOsStatsMapper linkOsStatsMapper;
+    private final LinkDeviceStatsMapper linkDeviceStatsMapper;
+    private final LinkNetworkStatsMapper linkNetworkStatsMapper;
+
+    @Override
+    public ShortLinkStatsRespDTO oneShortLinkStats(ShortLinkStatsReqDTO requestParam) {
+
+        List<LinkAccessStatsDO> listStatsByShortLink = linkAccessStatsMapper.listStatsByShortLink(requestParam);
+        if (CollUtil.isEmpty(listStatsByShortLink)) {
+            return null;
+        }
+
+        // basic access data
+        LinkAccessStatsDO pvUvUidStatsByShortLink = linkAccessLogsMapper.findPvUvUi
