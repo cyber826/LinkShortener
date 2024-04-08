@@ -15,4 +15,20 @@ import com.yiyuandev.abitoflink.project.dto.req.ShortLinkStatsAccessRecordReqDTO
 import com.yiyuandev.abitoflink.project.dto.req.ShortLinkStatsReqDTO;
 import com.yiyuandev.abitoflink.project.dto.resp.*;
 import com.yiyuandev.abitoflink.project.service.ShortLinkStatsService;
-import lombok.RequiredArgsConst
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
+@Service
+@RequiredArgsConstructor
+public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
+
+    private final LinkAccessStatsMapper linkAccessStatsMapper;
+    private final LinkLocaleStatsMapper linkLocaleStatsMapper;
+    private final LinkAccessLogsMapper linkAccessLogsMapper;
+    private final LinkBrowserStatsMapper linkBrowserStatsMapper;
+    private
