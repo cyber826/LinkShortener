@@ -53,4 +53,14 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                 .toList();
         rangeDates.forEach(each -> listStatsByShortLink.stream()
                 .filter(item -> Objects.equals(each, DateUtil.formatDate(item.getDate())))
-             
+                .findFirst()
+                .ifPresentOrElse(item -> {
+                    ShortLinkStatsAccessDailyRespDTO accessDailyRespDTO = ShortLinkStatsAccessDailyRespDTO.builder()
+                            .date(each)
+                            .pv(item.getPv())
+                            .uv(item.getUv())
+                            .uip(item.getUip())
+                            .build();
+                    daily.add(accessDailyRespDTO);
+                }, () -> {
+                    ShortLinkStatsAccessDailyRespDTO 
