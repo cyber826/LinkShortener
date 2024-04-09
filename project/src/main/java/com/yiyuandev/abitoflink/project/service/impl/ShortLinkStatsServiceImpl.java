@@ -75,4 +75,18 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
         // locale access stats
         List<ShortLinkStatsLocaleRespDTO> localeStats = new ArrayList<>();
         List<LinkLocaleStatsDO> listedLocaleByShortLink = linkLocaleStatsMapper.listLocaleByShortLink(requestParam);
-        int localeSum = listedL
+        int localeSum = listedLocaleByShortLink.stream()
+                .mapToInt(LinkLocaleStatsDO::getCnt)
+                .sum();
+        listedLocaleByShortLink.forEach(each -> {
+            double ratio = (double) each.getCnt() / localeSum;
+            double actualRatio = Math.round(ratio * 100.0) / 100.0;
+            ShortLinkStatsLocaleRespDTO localeRespDTO = ShortLinkStatsLocaleRespDTO.builder()
+                    .cnt(each.getCnt())
+                    .locale(each.getSuburb())
+                    .ratio(actualRatio)
+                    .build();
+            localeStats.add(localeRespDTO);
+        });
+
+        // hourly access
