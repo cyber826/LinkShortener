@@ -102,4 +102,16 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
             hourStats.add(hourCnt);
         }
 
-        // high-fr
+        // high-frequency ip access
+        List<ShortLinkStatsTopIpRespDTO> topIpStats = new ArrayList<>();
+        List<HashMap<String, Object>> listTopIpByShortLink = linkAccessLogsMapper.listTopIpByShortLink(requestParam);
+        listTopIpByShortLink.forEach(each -> {
+            ShortLinkStatsTopIpRespDTO statsTopIpRespDTO = ShortLinkStatsTopIpRespDTO.builder()
+                    .ip(each.get("ip").toString())
+                    .cnt(Integer.parseInt(each.get("count").toString()))
+                    .build();
+            topIpStats.add(statsTopIpRespDTO);
+        });
+
+        // weekly access
+        
