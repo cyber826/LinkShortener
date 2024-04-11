@@ -134,4 +134,15 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                 .sum();
         listBrowserStatsByShortLink.forEach(each -> {
             double ratio = (double) Integer.parseInt(each.get("count").toString()) / browserSum;
-            double actualRatio = Mat
+            double actualRatio = Math.round(ratio * 100.0) / 100.0;
+            ShortLinkStatsBrowserRespDTO browserRespDTO = ShortLinkStatsBrowserRespDTO.builder()
+                    .cnt(Integer.parseInt(each.get("count").toString()))
+                    .browser(each.get("browser").toString())
+                    .ratio(actualRatio)
+                    .build();
+            browserStats.add(browserRespDTO);
+        });
+
+        // operating system access
+        List<ShortLinkStatsOsRespDTO> osStats = new ArrayList<>();
+        List<HashMap<String, Object>> listOsStatsByShortLink = linkOsStatsMapper.listOsStatsBySh
