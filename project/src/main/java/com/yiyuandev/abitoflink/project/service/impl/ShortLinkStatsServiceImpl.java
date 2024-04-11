@@ -123,4 +123,15 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                     .findFirst()
                     .map(LinkAccessStatsDO::getPv)
                     .orElse(0);
-            weekdayStats.add(w
+            weekdayStats.add(weekdayCnt);
+        }
+
+        // browser type access
+        List<ShortLinkStatsBrowserRespDTO> browserStats = new ArrayList<>();
+        List<HashMap<String, Object>> listBrowserStatsByShortLink = linkBrowserStatsMapper.listBrowserStatsByShortLink(requestParam);
+        int browserSum = listBrowserStatsByShortLink.stream()
+                .mapToInt(each -> Integer.parseInt(each.get("count").toString()))
+                .sum();
+        listBrowserStatsByShortLink.forEach(each -> {
+            double ratio = (double) Integer.parseInt(each.get("count").toString()) / browserSum;
+            double actualRatio = Mat
