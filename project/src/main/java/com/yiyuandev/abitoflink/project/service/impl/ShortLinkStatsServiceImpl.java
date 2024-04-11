@@ -145,4 +145,13 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
 
         // operating system access
         List<ShortLinkStatsOsRespDTO> osStats = new ArrayList<>();
-        List<HashMap<String, Object>> listOsStatsByShortLink = linkOsStatsMapper.listOsStatsBySh
+        List<HashMap<String, Object>> listOsStatsByShortLink = linkOsStatsMapper.listOsStatsByShortLink(requestParam);
+        int osSum = listOsStatsByShortLink.stream()
+                .mapToInt(each -> Integer.parseInt(each.get("count").toString()))
+                .sum();
+        listOsStatsByShortLink.forEach(each -> {
+            double ratio = (double) Integer.parseInt(each.get("count").toString()) / osSum;
+            double actualRatio = Math.round(ratio * 100.0) / 100.0;
+            ShortLinkStatsOsRespDTO osRespDTO = ShortLinkStatsOsRespDTO.builder()
+                    .cnt(Integer.parseInt(each.get("count").toString()))
+      
