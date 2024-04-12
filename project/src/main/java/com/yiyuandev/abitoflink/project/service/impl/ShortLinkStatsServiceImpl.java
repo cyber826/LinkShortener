@@ -166,4 +166,17 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
         int oldUserCnt = Integer.parseInt(
                 Optional.ofNullable(findUvTypeByShortLink)
                         .map(each -> each.get("oldUserCnt"))
-      
+                        .map(Object::toString)
+                        .orElse("0")
+        );
+        int newUserCnt = Integer.parseInt(
+                Optional.ofNullable(findUvTypeByShortLink)
+                        .map(each -> each.get("newUserCnt"))
+                        .map(Object::toString)
+                        .orElse("0")
+        );
+        int uvSum = oldUserCnt + newUserCnt;
+        double oldRatio = (double) oldUserCnt / uvSum;
+        double actualOldRatio = Math.round(oldRatio * 100.0) / 100.0;
+        double newRatio = (double) newUserCnt / uvSum;
+        double actua
