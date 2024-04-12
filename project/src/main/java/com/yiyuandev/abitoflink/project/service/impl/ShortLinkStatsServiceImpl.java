@@ -191,4 +191,15 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                 .cnt(oldUserCnt)
                 .ratio(actualOldRatio)
                 .build();
-        uvT
+        uvTypeStats.add(oldUvRespDTO);
+
+        // device type access
+        List<ShortLinkStatsDeviceRespDTO> deviceStats = new ArrayList<>();
+        List<LinkDeviceStatsDO> listDeviceStatsByShortLink = linkDeviceStatsMapper.listDeviceStatsByShortLink(requestParam);
+        int deviceSum = listDeviceStatsByShortLink.stream()
+                .mapToInt(LinkDeviceStatsDO::getCnt)
+                .sum();
+        listDeviceStatsByShortLink.forEach(each -> {
+            double ratio = (double) each.getCnt() / deviceSum;
+            double actualRatio = Math.round(ratio * 100.0) / 100.0;
+            ShortLinkStatsDeviceRespDTO deviceRespDTO = Sh
