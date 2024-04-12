@@ -154,4 +154,16 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
             double actualRatio = Math.round(ratio * 100.0) / 100.0;
             ShortLinkStatsOsRespDTO osRespDTO = ShortLinkStatsOsRespDTO.builder()
                     .cnt(Integer.parseInt(each.get("count").toString()))
+                    .os(each.get("os").toString())
+                    .ratio(actualRatio)
+                    .build();
+            osStats.add(osRespDTO);
+        });
+
+        // unique visitor type
+        List<ShortLinkStatsUvRespDTO> uvTypeStats = new ArrayList<>();
+        HashMap<String, Object> findUvTypeByShortLink = linkAccessLogsMapper.findUvTypeCntByShortLink(requestParam);
+        int oldUserCnt = Integer.parseInt(
+                Optional.ofNullable(findUvTypeByShortLink)
+                        .map(each -> each.get("oldUserCnt"))
       
