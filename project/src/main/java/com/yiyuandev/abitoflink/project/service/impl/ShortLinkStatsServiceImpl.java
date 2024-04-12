@@ -179,4 +179,16 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
         double oldRatio = (double) oldUserCnt / uvSum;
         double actualOldRatio = Math.round(oldRatio * 100.0) / 100.0;
         double newRatio = (double) newUserCnt / uvSum;
-        double actua
+        double actualNewRatio = Math.round(newRatio * 100.0) / 100.0;
+        ShortLinkStatsUvRespDTO newUvRespDTO = ShortLinkStatsUvRespDTO.builder()
+                .uvType("newUser")
+                .cnt(newUserCnt)
+                .ratio(actualNewRatio)
+                .build();
+        uvTypeStats.add(newUvRespDTO);
+        ShortLinkStatsUvRespDTO oldUvRespDTO = ShortLinkStatsUvRespDTO.builder()
+                .uvType("oldUser")
+                .cnt(oldUserCnt)
+                .ratio(actualOldRatio)
+                .build();
+        uvT
