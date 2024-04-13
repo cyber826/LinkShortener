@@ -214,4 +214,16 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
         List<ShortLinkStatsNetworkRespDTO> networkStats = new ArrayList<>();
         List<LinkNetworkStatsDO> listNetworkStatsByShortLink = linkNetworkStatsMapper.listNetworkStatsByShortLink(requestParam);
         int networkSum = listNetworkStatsByShortLink.stream()
-                .
+                .mapToInt(LinkNetworkStatsDO::getCnt)
+                .sum();
+        listNetworkStatsByShortLink.forEach(each -> {
+            double ratio = (double) each.getCnt() / networkSum;
+            double actualRatio = Math.round(ratio * 100.0) / 100.0;
+            ShortLinkStatsNetworkRespDTO networkRespDTO = ShortLinkStatsNetworkRespDTO.builder()
+                    .cnt(each.getCnt())
+                    .network(each.getNetwork())
+                    .ratio(actualRatio)
+                    .build();
+            networkStats.add(networkRespDTO);
+        });
+        return ShortLinkStatsRespDTO.builde
