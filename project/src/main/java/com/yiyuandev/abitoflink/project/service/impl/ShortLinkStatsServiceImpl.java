@@ -226,4 +226,17 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                     .build();
             networkStats.add(networkRespDTO);
         });
-        return ShortLinkStatsRespDTO.builde
+        return ShortLinkStatsRespDTO.builder()
+                .pv(pvUvUidStatsByShortLink.getPv())
+                .uv(pvUvUidStatsByShortLink.getUv())
+                .uip(pvUvUidStatsByShortLink.getUip())
+                .daily(daily)
+                .localeStats(localeStats)
+                .hourStats(hourStats)
+                .topIpStats(topIpStats)
+                .weekdayStats(weekdayStats)
+                .browserStats(browserStats)
+                .osStats(osStats)
+                .uvTypeStats(uvTypeStats)
+                .deviceStats(deviceStats)
+                .networkStats(ne
