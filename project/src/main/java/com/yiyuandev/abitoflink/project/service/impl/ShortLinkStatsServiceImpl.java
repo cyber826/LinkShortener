@@ -274,4 +274,17 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                             .date(each)
                             .pv(0)
                             .uv(0)
-   
+                            .uip(0)
+                            .build();
+                    daily.add(accessDailyRespDTO);
+                }));
+
+        // locale access stats
+        List<ShortLinkStatsLocaleRespDTO> localeStats = new ArrayList<>();
+        List<LinkLocaleStatsDO> listedLocaleByGroup = linkLocaleStatsMapper.listLocaleByGroup(requestParam);
+        int localeSum = listedLocaleByGroup.stream()
+                .mapToInt(LinkLocaleStatsDO::getCnt)
+                .sum();
+        listedLocaleByGroup.forEach(each -> {
+            double ratio = (double) each.getCnt() / localeSum;
+    
