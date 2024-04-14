@@ -254,4 +254,12 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
         LinkAccessStatsDO pvUvUidStatsByGroup = linkAccessLogsMapper.findPvUvUidStatsByGroup(requestParam);
 
         // basic access stats
-        List<ShortLinkStatsAccessDaily
+        List<ShortLinkStatsAccessDailyRespDTO> daily = new ArrayList<>();
+        List<String> rangeDates = DateUtil.rangeToList(DateUtil.parse(requestParam.getStartDate()), DateUtil.parse(requestParam.getEndDate()), DateField.DAY_OF_MONTH).stream()
+                .map(DateUtil::formatDate)
+                .toList();
+        rangeDates.forEach(each -> listStatsByGroup.stream()
+                .filter(item -> Objects.equals(each, DateUtil.formatDate(item.getDate())))
+                .findFirst()
+                .ifPresentOrElse(item -> {
+                    ShortLinkStatsAccessDailyRespDTO accessDai
