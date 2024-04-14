@@ -239,4 +239,19 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                 .osStats(osStats)
                 .uvTypeStats(uvTypeStats)
                 .deviceStats(deviceStats)
-                .networkStats(ne
+                .networkStats(networkStats)
+                .build();
+    }
+
+    @Override
+    public ShortLinkStatsRespDTO groupShortLinkStats(ShortLinkGroupStatsReqDTO requestParam) {
+        List<LinkAccessStatsDO> listStatsByGroup = linkAccessStatsMapper.listStatsByGroup(requestParam);
+        if (CollUtil.isEmpty(listStatsByGroup)) {
+            return null;
+        }
+
+        // basic access data
+        LinkAccessStatsDO pvUvUidStatsByGroup = linkAccessLogsMapper.findPvUvUidStatsByGroup(requestParam);
+
+        // basic access stats
+        List<ShortLinkStatsAccessDaily
