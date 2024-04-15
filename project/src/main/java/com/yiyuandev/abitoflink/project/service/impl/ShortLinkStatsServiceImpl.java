@@ -287,4 +287,15 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                 .sum();
         listedLocaleByGroup.forEach(each -> {
             double ratio = (double) each.getCnt() / localeSum;
-    
+            double actualRatio = Math.round(ratio * 100.0) / 100.0;
+            ShortLinkStatsLocaleRespDTO localeRespDTO = ShortLinkStatsLocaleRespDTO.builder()
+                    .cnt(each.getCnt())
+                    .locale(each.getSuburb())
+                    .ratio(actualRatio)
+                    .build();
+            localeStats.add(localeRespDTO);
+        });
+
+        // hourly access
+        List<Integer> hourStats = new ArrayList<>();
+        List<LinkAccessStatsDO> listHourStatsByGroup = linkAccessStatsMapper.listHourStatsByGroup(requestParam
