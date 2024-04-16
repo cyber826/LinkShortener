@@ -311,4 +311,15 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
 
         // high-frequency ip access
         List<ShortLinkStatsTopIpRespDTO> topIpStats = new ArrayList<>();
-        List<HashMap<String,
+        List<HashMap<String, Object>> listTopIpByGroup = linkAccessLogsMapper.listTopIpByGroup(requestParam);
+        listTopIpByGroup.forEach(each -> {
+            ShortLinkStatsTopIpRespDTO statsTopIpRespDTO = ShortLinkStatsTopIpRespDTO.builder()
+                    .ip(each.get("ip").toString())
+                    .cnt(Integer.parseInt(each.get("count").toString()))
+                    .build();
+            topIpStats.add(statsTopIpRespDTO);
+        });
+
+        // weekly access
+        List<Integer> weekdayStats = new ArrayList<>();
+        List<LinkAccessStatsDO> listWeekdayStatsByGroup = linkAccessStatsMapper.l
