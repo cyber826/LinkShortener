@@ -322,4 +322,17 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
 
         // weekly access
         List<Integer> weekdayStats = new ArrayList<>();
-        List<LinkAccessStatsDO> listWeekdayStatsByGroup = linkAccessStatsMapper.l
+        List<LinkAccessStatsDO> listWeekdayStatsByGroup = linkAccessStatsMapper.listWeekdayStatsByGroup(requestParam);
+        for (int i = 1; i < 8; i++) {
+            AtomicInteger weekday = new AtomicInteger(i);
+            int weekdayCnt = listWeekdayStatsByGroup.stream()
+                    .filter(each -> Objects.equals(each.getWeekday(), weekday.get()))
+                    .findFirst()
+                    .map(LinkAccessStatsDO::getPv)
+                    .orElse(0);
+            weekdayStats.add(weekdayCnt);
+        }
+
+        // browser type access
+        List<ShortLinkStatsBrowserRespDTO> browserStats = new ArrayList<>();
+  
