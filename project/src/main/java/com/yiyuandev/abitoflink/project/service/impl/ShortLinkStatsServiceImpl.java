@@ -335,4 +335,11 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
 
         // browser type access
         List<ShortLinkStatsBrowserRespDTO> browserStats = new ArrayList<>();
-  
+        List<HashMap<String, Object>> listBrowserStatsByGroup = linkBrowserStatsMapper.listBrowserStatsByGroup(requestParam);
+        int browserSum = listBrowserStatsByGroup.stream()
+                .mapToInt(each -> Integer.parseInt(each.get("count").toString()))
+                .sum();
+        listBrowserStatsByGroup.forEach(each -> {
+            double ratio = (double) Integer.parseInt(each.get("count").toString()) / browserSum;
+            double actualRatio = Math.round(ratio * 100.0) / 100.0;
+            ShortLinkStatsBrowserRespDTO browserRespDTO = ShortLinkS
