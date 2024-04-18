@@ -375,4 +375,16 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                 .sum();
         listDeviceStatsByGroup.forEach(each -> {
             double ratio = (double) each.getCnt() / deviceSum;
-            double actualRatio = Math.round(ratio * 100.0) 
+            double actualRatio = Math.round(ratio * 100.0) / 100.0;
+            ShortLinkStatsDeviceRespDTO deviceRespDTO = ShortLinkStatsDeviceRespDTO.builder()
+                    .cnt(each.getCnt())
+                    .device(each.getDevice())
+                    .ratio(actualRatio)
+                    .build();
+            deviceStats.add(deviceRespDTO);
+        });
+
+        // network type access
+        List<ShortLinkStatsNetworkRespDTO> networkStats = new ArrayList<>();
+        List<LinkNetworkStatsDO> listNetworkStatsByGroup = linkNetworkStatsMapper.listNetworkStatsByGroup(requestParam);
+     
