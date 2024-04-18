@@ -397,4 +397,19 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                     .cnt(each.getCnt())
                     .network(each.getNetwork())
                     .ratio(actualRatio)
-             
+                    .build();
+            networkStats.add(networkRespDTO);
+        });
+
+        return ShortLinkStatsRespDTO.builder()
+                .pv(pvUvUidStatsByGroup.getPv())
+                .uv(pvUvUidStatsByGroup.getUv())
+                .uip(pvUvUidStatsByGroup.getUip())
+                .daily(daily)
+                .localeStats(localeStats)
+                .hourStats(hourStats)
+                .topIpStats(topIpStats)
+                .weekdayStats(weekdayStats)
+                .browserStats(browserStats)
+                .osStats(osStats)
+                .deviceStats(device
