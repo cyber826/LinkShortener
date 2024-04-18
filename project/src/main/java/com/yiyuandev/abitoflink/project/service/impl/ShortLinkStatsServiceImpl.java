@@ -363,4 +363,16 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                     .cnt(Integer.parseInt(each.get("count").toString()))
                     .os(each.get("os").toString())
                     .ratio(actualRatio)
-              
+                    .build();
+            osStats.add(osRespDTO);
+        });
+
+        // device type access
+        List<ShortLinkStatsDeviceRespDTO> deviceStats = new ArrayList<>();
+        List<LinkDeviceStatsDO> listDeviceStatsByGroup = linkDeviceStatsMapper.listDeviceStatsByGroup(requestParam);
+        int deviceSum = listDeviceStatsByGroup.stream()
+                .mapToInt(LinkDeviceStatsDO::getCnt)
+                .sum();
+        listDeviceStatsByGroup.forEach(each -> {
+            double ratio = (double) each.getCnt() / deviceSum;
+            double actualRatio = Math.round(ratio * 100.0) 
