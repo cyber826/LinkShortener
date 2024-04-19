@@ -412,4 +412,16 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                 .weekdayStats(weekdayStats)
                 .browserStats(browserStats)
                 .osStats(osStats)
-                .deviceStats(device
+                .deviceStats(deviceStats)
+                .networkStats(networkStats)
+                .build();
+    }
+
+    @Override
+    public IPage<ShortLinkStatsAccessRecordRespDTO> shortLinkStatsAccessRecord(ShortLinkStatsAccessRecordReqDTO requestParam) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        LambdaQueryWrapper<LinkAccessLogsDO> queryWrapper = Wrappers.lambdaQuery(LinkAccessLogsDO.class)
+                .eq(LinkAccessLogsDO::getGid, requestParam.getGid())
+                .eq(LinkAccessLogsDO::getFullShortUrl, requestParam.getFullShortUrl())
+                .be
