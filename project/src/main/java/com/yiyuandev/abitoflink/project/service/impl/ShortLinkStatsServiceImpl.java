@@ -480,4 +480,18 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
 
         IPage<LinkAccessLogsDO> linkAccessLogsDOIPage = linkAccessLogsMapper.selectPage(requestParam, queryWrapper);
 
-        IPage<ShortLinkStatsAccessRecordRespDTO> result = linkAccessLogsDOIPage.convert(each -> BeanUtil.toBean(each, ShortLinkStatsAcc
+        IPage<ShortLinkStatsAccessRecordRespDTO> result = linkAccessLogsDOIPage.convert(each -> BeanUtil.toBean(each, ShortLinkStatsAccessRecordRespDTO.class));
+
+        List<String> userAccessLogsList = result.getRecords().stream()
+                .map(ShortLinkStatsAccessRecordRespDTO::getUser)
+                .toList();
+
+        List<Map<String, Object>> uvTypeList = linkAccessLogsMapper.selectGroupUvTypeByUsers(
+                requestParam.getGid(),
+                requestParam.getStartDate(),
+                requestParam.getEndDate(),
+                userAccessLogsList);
+
+        result.getRecords().forEach(each -> {
+                    String uvType = uvTypeList.stream()
+                            .filter(item ->
