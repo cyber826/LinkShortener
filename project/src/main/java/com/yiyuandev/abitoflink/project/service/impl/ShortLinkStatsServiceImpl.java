@@ -444,4 +444,18 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
         List<Map<String, Object>> uvTypeList = linkAccessLogsMapper.selectUvTypeByUsers(
                 requestParam.getFullShortUrl(),
                 requestParam.getGid(),
-                requestParam.getStar
+                requestParam.getStartDate(),
+                requestParam.getEndDate(),
+                userAccessLogsList);
+
+        result.getRecords().forEach(each -> {
+                    String uvType = uvTypeList.stream()
+                            .filter(item -> Objects.equals(each.getUser(), item.get("user")))
+                            .findFirst()
+                            .map(item -> item.get("UvType"))
+                            .map(Object::toString)
+                            .orElse("returning user");
+
+                    each.setUvType(uvType);
+                }
+        );
