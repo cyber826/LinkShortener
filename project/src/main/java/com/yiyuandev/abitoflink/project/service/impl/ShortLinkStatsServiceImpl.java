@@ -459,3 +459,14 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                     each.setUvType(uvType);
                 }
         );
+
+        return result;
+    }
+
+    @Override
+    public IPage<ShortLinkStatsAccessRecordRespDTO> groupStatsAccessRecord(ShortLinkGroupStatsAccessRecordReqDTO requestParam) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        LambdaQueryWrapper<LinkAccessLogsDO> queryWrapper = Wrappers.lambdaQuery(LinkAccessLogsDO.class)
+                .eq(LinkAccessLogsDO::getGid, requestParam.getGid())
+                .between(LinkAccessLogsDO::getCreationTime, requestParam.getStartDate(), LocalDateTime.parse(requestParam.getEndDate(
