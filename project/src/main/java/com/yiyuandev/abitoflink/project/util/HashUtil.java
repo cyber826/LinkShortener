@@ -16,4 +16,15 @@ public class HashUtil {
         StringBuilder sb = new StringBuilder();
         while (num > 0) {
             int i = (int) (num % SIZE);
-            sb.append(CH
+            sb.append(CHARS[i]);
+            num /= SIZE;
+        }
+        return sb.reverse().toString();
+    }
+
+    public static String hashToBase62(String str) {
+        long i = MurmurHash.hash32(str);
+        long num = i < 0 ? Integer.MAX_VALUE - i : i;
+        return convertDecToBase62(num);
+    }
+}
