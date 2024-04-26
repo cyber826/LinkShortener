@@ -40,3 +40,8 @@ mybatis-plus:
       logic-not-delete-value: 0
       id-type: auto
 short-link:
+  stats:
+    locale:
+      findIp-key: your-api-key
+  domain:
+    default: abitof.link:8001
