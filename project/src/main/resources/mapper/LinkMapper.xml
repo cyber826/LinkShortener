@@ -47,4 +47,14 @@
                 ORDER BY t.total_uv DESC
             </when>
             <when test="orderTag == 'totalUv'">
-                ORDER BY t.total
+                ORDER BY t.total_pv DESC
+            </when>
+            <when test="orderTag == 'totalUip'">
+                ORDER BY t.total_uip DESC
+            </when>
+            <otherwise>
+                ORDER BY t.creation_time DESC
+            </otherwise>
+        </choose>
+    </select>
+</mapper>
