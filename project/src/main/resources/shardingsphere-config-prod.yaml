@@ -61,4 +61,12 @@ rules:
         # Number of shards
         props:
           sharding-count: 16
-      link
+      link_stats_today_table_hash_mod:
+        # Shard by hash of sharding key
+        type: HASH_MOD
+        # Number of shards
+        props:
+          sharding-count: 16
+# Display logical SQL & real SQL
+props:
+  sql-show: true
