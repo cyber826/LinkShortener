@@ -41,4 +41,24 @@ rules:
           standard:
             # Sharding key
             shardingColumn: gid
-            # Sharding algorithm, corresponding to rules[0].shardingAlgorithm
+            # Sharding algorithm, corresponding to rules[0].shardingAlgorithms
+            shardingAlgorithmName: link_stats_today_table_hash_mod
+    # Binding tables
+    bindingTables:
+      - t_link, t_link_stats_today
+    # Sharding algorithm
+    shardingAlgorithms:
+      # Data table sharding algorithm
+      link_table_hash_mod:
+        # Shard by hash of sharding key
+        type: HASH_MOD
+        # Number of shards
+        props:
+          sharding-count: 16
+      link_goto_table_hash_mod:
+        # Shard by hash of sharding key
+        type: HASH_MOD
+        # Number of shards
+        props:
+          sharding-count: 16
+      link
