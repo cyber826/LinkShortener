@@ -749,3 +749,554 @@ CREATE TABLE `t_link_15` (
   `creation_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  `del_time` bigint DEFAULT '0' COMMENT 'delete time',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`del_time`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_access_logs
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_access_logs`;
+CREATE TABLE `t_link_access_logs` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `user` varchar(255) DEFAULT NULL COMMENT 'user',
+  `browser` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'browser type',
+  `os` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'operating system',
+  `ip` varchar(64) DEFAULT NULL COMMENT 'ip',
+  `device` varchar(64) DEFAULT NULL COMMENT 'device type',
+  `network` varchar(64) DEFAULT NULL COMMENT 'network type',
+  `locale` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'locale',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1772486357529174018 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_access_stats
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_access_stats`;
+CREATE TABLE `t_link_access_stats` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL,
+  `pv` int DEFAULT NULL COMMENT 'page view',
+  `uv` int DEFAULT NULL COMMENT 'unique vistors',
+  `uip` int DEFAULT NULL COMMENT 'unique ip',
+  `hour` int DEFAULT NULL COMMENT 'hour',
+  `weekday` int DEFAULT NULL COMMENT 'week',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_access_stats` (`full_short_url`,`gid`,`date`,`hour`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_browser_stats
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_browser_stats`;
+CREATE TABLE `t_link_browser_stats` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL,
+  `cnt` int DEFAULT NULL COMMENT 'visit count',
+  `browser` varchar(64) DEFAULT NULL COMMENT 'browser type',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_browser_stats` (`gid`,`full_short_url`,`date`,`browser`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_device_stats
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_device_stats`;
+CREATE TABLE `t_link_device_stats` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL,
+  `cnt` int DEFAULT NULL COMMENT 'visit count',
+  `device` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'device type',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_device_stats` (`gid`,`full_short_url`,`date`,`device`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_0
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_0`;
+CREATE TABLE `t_link_goto_0` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_1
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_1`;
+CREATE TABLE `t_link_goto_1` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_2
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_2`;
+CREATE TABLE `t_link_goto_2` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_3
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_3`;
+CREATE TABLE `t_link_goto_3` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_4
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_4`;
+CREATE TABLE `t_link_goto_4` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_5
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_5`;
+CREATE TABLE `t_link_goto_5` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_6
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_6`;
+CREATE TABLE `t_link_goto_6` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_7
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_7`;
+CREATE TABLE `t_link_goto_7` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_8
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_8`;
+CREATE TABLE `t_link_goto_8` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_9
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_9`;
+CREATE TABLE `t_link_goto_9` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_10
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_10`;
+CREATE TABLE `t_link_goto_10` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_11
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_11`;
+CREATE TABLE `t_link_goto_11` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_12
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_12`;
+CREATE TABLE `t_link_goto_12` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_13
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_13`;
+CREATE TABLE `t_link_goto_13` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_14
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_14`;
+CREATE TABLE `t_link_goto_14` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_goto_15
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_goto_15`;
+CREATE TABLE `t_link_goto_15` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_locale_stats
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_locale_stats`;
+CREATE TABLE `t_link_locale_stats` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL,
+  `cnt` int DEFAULT NULL COMMENT 'visit count',
+  `state` varchar(64) DEFAULT NULL COMMENT 'state name',
+  `suburb` varchar(64) DEFAULT NULL COMMENT 'suburb name',
+  `city` varchar(64) DEFAULT NULL COMMENT 'city name',
+  `country` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'country name',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_locale_stats` (`gid`,`full_short_url`,`date`,`country`,`state`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_network_stats
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_network_stats`;
+CREATE TABLE `t_link_network_stats` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL,
+  `cnt` int DEFAULT NULL COMMENT 'visit count',
+  `network` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'network type',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_network_stats` (`gid`,`full_short_url`,`date`,`network`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_os_stats
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_os_stats`;
+CREATE TABLE `t_link_os_stats` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL,
+  `cnt` int DEFAULT NULL COMMENT 'visit count',
+  `os` varchar(64) DEFAULT NULL COMMENT 'operating system',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_os_stats` (`gid`,`full_short_url`,`date`,`os`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_0
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_0`;
+CREATE TABLE `t_link_stats_today_0` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_1
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_1`;
+CREATE TABLE `t_link_stats_today_1` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_2
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_2`;
+CREATE TABLE `t_link_stats_today_2` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_3
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_3`;
+CREATE TABLE `t_link_stats_today_3` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_4
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_4`;
+CREATE TABLE `t_link_stats_today_4` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_5
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_5`;
+CREATE TABLE `t_link_stats_today_5` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_6
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_6`;
+CREATE TABLE `t_link_stats_today_6` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_7
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_7`;
+CREATE TABLE `t_link_stats_today_7` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_8
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_8`;
+CREATE TABLE `t_link_stats_today_8` (
+  `id` bigint NOT NULL,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_9
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_9`;
+CREATE TABLE `t_link_stats_today_9` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_10
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_10`;
+CREATE TABLE `t_link_stats_today_10` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_11
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_11`;
+CREATE TABLE `t_link_stats_today_11` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_12
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_12`;
+CREATE TABLE `t_link_stats_today_12` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
