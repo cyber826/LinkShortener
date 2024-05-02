@@ -1,0 +1,1 @@
+# LinkShortener\n\n&gt; **Note**: update config files to your dev env accordingly before running the application, start only aggregation and gateway services if you are running it within aggr

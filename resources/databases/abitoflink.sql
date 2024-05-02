@@ -1300,3 +1300,377 @@ DROP TABLE IF EXISTS `t_link_stats_today_12`;
 CREATE TABLE `t_link_stats_today_12` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_13
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_13`;
+CREATE TABLE `t_link_stats_today_13` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_14
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_14`;
+CREATE TABLE `t_link_stats_today_14` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_link_stats_today_15
+-- ----------------------------
+DROP TABLE IF EXISTS `t_link_stats_today_15`;
+CREATE TABLE `t_link_stats_today_15` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT 'group id',
+  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'full short url',
+  `date` date DEFAULT NULL COMMENT 'today''s date',
+  `today_pv` int DEFAULT '0' COMMENT 'today page view',
+  `today_uv` int DEFAULT '0' COMMENT 'today unique visitors',
+  `today_uip` int DEFAULT '0' COMMENT 'today unique ip',
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_full_short_url` (`full_short_url`,`gid`,`date`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_0
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_0`;
+CREATE TABLE `t_user_0` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1771889913807228931 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_1
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_1`;
+CREATE TABLE `t_user_1` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1757753323950411780 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_2
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_2`;
+CREATE TABLE `t_user_2` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1758719008864194563 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_3
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_3`;
+CREATE TABLE `t_user_3` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1756999192868450306 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_4
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_4`;
+CREATE TABLE `t_user_4` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1756999192868450306 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_5
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_5`;
+CREATE TABLE `t_user_5` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1756999192868450306 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_6
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_6`;
+CREATE TABLE `t_user_6` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1756999192868450306 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_7
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_7`;
+CREATE TABLE `t_user_7` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1772485992859607042 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_8
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_8`;
+CREATE TABLE `t_user_8` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1756999192868450306 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_9
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_9`;
+CREATE TABLE `t_user_9` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1756999192868450306 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_10
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_10`;
+CREATE TABLE `t_user_10` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1757035377624080387 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_11
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_11`;
+CREATE TABLE `t_user_11` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1756999192868450306 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_12
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_12`;
+CREATE TABLE `t_user_12` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1771887967276879875 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_13
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_13`;
+CREATE TABLE `t_user_13` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1756999192868450306 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_14
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_14`;
+CREATE TABLE `t_user_14` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1770456486591471618 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for t_user_15
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_15`;
+CREATE TABLE `t_user_15` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(256) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
+  `real_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(128) DEFAULT NULL,
+  `email` varchar(512) DEFAULT NULL,
+  `deletion_time` bigint DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `del_flag` tinyint(1) DEFAULT NULL COMMENT '0: not deleted; 1: deleted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1768945896446361603 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+SET FOREIGN_KEY_CHECKS = 1;
